@@ -58,7 +58,7 @@
     </div><!--Sidebar col-md-5-->
     
             <div class = "complaintList"> 
-               <a  href ="/student/{id}/complaint/id?/{cid}/show"> <button class='specificComplaint' href ="complaint/id?/{id}/show" id="btnsearch"> <strong>This case</strong> </button></a>
+               <a  href ="/student/{id}/complaint/{cid}/show"> <button class='specificComplaint' href ="complaint/id?/{id}/show" id="btnsearch"> <strong>This case</strong> </button></a>
             </div>
     </div>
     </div>

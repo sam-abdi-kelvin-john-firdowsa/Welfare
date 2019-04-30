@@ -24,4 +24,4 @@ Route::get('/student/{id}/rate_service', 'PagesController@student_rating');
 Route::get('/studhlp/{id}', 'PagesController@student_help');
 Route::get('/about', 'PagesController@about');
 
-Route::get('/student/{id}/complaint/id?/{cid}/show', 'PagesController@showSpecificComplaint');
+Route::get('/student/{id}/complaint/{cid}/show', 'PagesController@showSpecificComplaint');
