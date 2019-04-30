@@ -39,6 +39,10 @@ class pagesController extends Controller
         return view('pages.about');
     }
 
+    public function showSpecificComplaint(){
+        return view('pages.specificComplaint');
+    }
+
 
 
 }
