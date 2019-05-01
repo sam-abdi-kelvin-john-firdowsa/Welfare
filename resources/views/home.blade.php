@@ -31,17 +31,13 @@
                                 <div Container>
                                     <ul id="sidenav-links">
                                         <li>
-                                            <a href="/student/{id}/profile">Your Profile</a>
+                                            <a href="admin/profile">Profile</a>
                                         </li>
-                                        <li>
-                                            <a href="/student/{id}/complaint">Complain</a>  
-                                        </li>  
+                                        
                                         <li>                        
-                                            <a href="/student/{id}/my_hist">History</a>  
+                                            <a href="admin/my_hist">History</a>  
                                         </li>
-                                        <li>                          
-                                            <a href="/student/{id}/rate_service">Rate Us</a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div><!--Sidebar col-md-5-->
@@ -226,7 +222,7 @@
                     
                     
 
-                    <?php } else echo '<div class="panel-heading">Normal User</div>';?>
+                    <?php } else echo '';?>
             
 
                     
@@ -241,7 +237,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                   
                 </div>
             </div>
         </div>

@@ -30,6 +30,16 @@ class HomeController extends Controller
     { 
         return view('pages.adminDash');
     }
+
+    public function adminProf()
+    { 
+        return view('pages.adminProfile');
+    }
+
+    public function adminHist()
+    { 
+        return view('pages.adminHistory');
+    }
 }
 
    
