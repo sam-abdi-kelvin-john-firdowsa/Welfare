@@ -24,4 +24,17 @@ Route::get('/student/{id}/rate_service', 'PagesController@student_rating');
 Route::get('/studhlp/{id}', 'PagesController@student_help');
 Route::get('/about', 'PagesController@about');
 
-Route::get('/student/{id}/complaint/{cid}/show', 'PagesController@showSpecificComplaint');
+//Config the Admin Protected Routes
+Route::get('admin/dash', 'HomeController@admin')->middleware('admin');
+Route::get('admin/profile', 'HomeController@adminProf')->middleware('admin');
+Route::get('admin/my_hist', 'HomeController@adminHist')->middleware('admin');
+
+//Route::get('/student/{id}/complaint/{cid}/show', 'PagesController@showSpecificComplaint');
+
+/* These are the routes for the chat controller, view etc */
+Route::get('/student/{id}/complaint/{cid}/show', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

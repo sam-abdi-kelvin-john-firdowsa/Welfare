@@ -14,3 +14,12 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+//to ensure that only authenticated users can listen on a chat
+ 
+//implement this after authentification
+/*
+Broadcast::channel('chat', function ($user) {
+    return Auth::check();
+  });
+*/
