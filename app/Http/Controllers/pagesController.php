@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\student;
+use App\User;
 
 class pagesController extends Controller
 {
@@ -17,9 +19,17 @@ class pagesController extends Controller
         return view('pages.studentComplaint');
     }
 
-    public function studentProfile($id){
-        return view('pages.studentProfile');
+    public function studentProfile(){
+        $user = Auth::user();
+        $id = Auth::user()->id;
+        $student = student::find($id);
+        return view('pages.studentProfile')->with('studentUser',['userT' => $user, 'studentT' => $student] );
     }
+
+    public function studentProfileupdt(){
+        return view('pages.studUpdateprof');
+    }
+
 
     public function studentHistory($id){
         return view('pages.studentHistory');
