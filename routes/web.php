@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 
 Route::get('/student/{id}/dash', 'PagesController@studentDash');
-Route::get('/student/{id}/profile', 'PagesController@studentProfile');
+Route::get('/student/profile', 'PagesController@studentProfile');
+Route::get('/student/profile_updt', 'PagesController@studentProfileupdt');
 Route::get('/student/{id}/complaint', 'PagesController@studentComplaint'); 
 Route::get('/student/{id}/my_hist', 'PagesController@studentHistory'); 
 Route::get('/student/{id}/rate_service', 'PagesController@student_rating'); 

@@ -112,7 +112,7 @@
             <div Container>
                 <ul id="sidenav-links">
                     <li>
-                        <a href="/student/{id}/profile">Your Profile</a>
+                        <a href="/student/profile">Your Profile</a>
                     </li>
                     <li>
                         <a href="/student/{id}/complaint">Complain</a>  
