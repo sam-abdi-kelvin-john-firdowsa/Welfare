@@ -3,7 +3,19 @@
 
 @section('content')
 <div class="container">
-        <h1>Edit Profile</h1>
+
+
+        @if(\Session::has('error'))
+
+        <div class="alert alert-danger">
+        
+        {{\Session::get('error')}}
+        
+        </div>
+        @endif
+
+
+        <h1>Complete Registration</h1>
           <hr>
         <div class="row">
           <!-- left column -->

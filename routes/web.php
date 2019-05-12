@@ -39,3 +39,9 @@ Route::post('messages', 'ChatsController@sendMessage');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//routes for updating profile
+Route::get('/student/profile_updt', 'PagesController@studentProfileupdt');
+Route::post('/profile', 'ProfileController@updateProfile');
+
+Route::get('/student/complete_reg', 'PagesController@studentCompleteReg');
