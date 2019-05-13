@@ -20,7 +20,6 @@ Route::get('/student/{id}/dash', 'PagesController@studentDash');
 Route::get('/student/profile', 'PagesController@studentProfile');
 Route::get('/student/profile_updt', 'PagesController@studentProfileupdt');
 Route::get('/student/{id}/complaint', 'PagesController@studentComplaint'); 
-Route::get('/student/{id}/my_hist', 'PagesController@studentHistory'); 
 Route::get('/student/{id}/rate_service', 'PagesController@student_rating'); 
 Route::get('/studhlp/{id}', 'PagesController@student_help');
 Route::get('/about', 'PagesController@about');
@@ -45,3 +44,9 @@ Route::get('/student/profile_updt', 'PagesController@studentProfileupdt');
 Route::post('/profile', 'ProfileController@updateProfile');
 
 Route::get('/student/complete_reg', 'PagesController@studentCompleteReg');
+
+//route for posting a complaint
+Route::post('/complain', 'ComplaintsController@PostComplaint');
+Route::get('/student/{id}/my_hist', 'ComplaintsController@studentHistory');
+
+Route::get('/student/case/show/{complaint}', 'ComplaintsController@showCaseForStudent');
