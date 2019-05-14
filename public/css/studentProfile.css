@@ -1,0 +1,6 @@
+#profile-display{
+    grid-column-start: 6;
+    grid-column-end: 10;
+    grid-row-start: row1-start
+
+  }
