@@ -50,3 +50,6 @@ Route::post('/complain', 'ComplaintsController@PostComplaint');
 Route::get('/student/{id}/my_hist', 'ComplaintsController@studentHistory');
 
 Route::get('/student/case/show/{complaint}', 'ComplaintsController@showCaseForStudent');
+
+Route::get('case/handler/{id}', 'ComplaintsController@ChangeStatusToOpen')->middleware('admin');
+Route::get('/case/handler/{id}/show', 'ComplaintsController@ShowCaseForAdmin')->middleware('admin');

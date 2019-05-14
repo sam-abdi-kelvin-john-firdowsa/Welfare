@@ -19,17 +19,13 @@
         <div Container>
             <ul id="sidenav-links">
                 <li>
-                    <a href="/student/profile">Your Profile</a>
+                    <a href="/admin/profile">Your Profile</a>
                 </li>
-                <li>
-                    <a href="/student/complaint">Complain</a>  
-                </li>  
+                
                 <li>                        
-                    <a href="/student/{id}/my_hist">History</a>  
+                    <a href="/admin/my_hist">History</a>  
                 </li>
-                <li>                          
-                    <a href="/student/rate_service">Rate Us</a>
-                </li>
+               
             </ul>
         </div>
 
@@ -41,7 +37,9 @@
         <!--  <h2>Open Tasks Shows up here</h2>  -->
         <small>Case status: {{$thisCase->status}}</small>
         <br>
-        <small>Case submitted at:{{$thisCase->created_at}}</small>
+        <small>Case submitted at: {{$thisCase->created_at}}</small>
+        <br>
+        <small>Case submitted by: {{$thisCase->studReg}}</small>
         <br>
         <hr>
         <h6>Department: {{$thisCase->department}}</h6>

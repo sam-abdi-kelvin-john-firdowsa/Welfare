@@ -54,4 +54,20 @@ class ComplaintsController extends Controller
         
        return view('pages.studentSpecificComplaint')->with('thisCase', $case);
     }
+
+    public function ChangeStatusToOpen($id)
+    {
+        $admin = Auth::User()->id;
+        complaint::where('id', $id)->update(array('status'=>'Open','SolvedBy'=>$admin));
+       // return redirect('/case/handler/{id}/show');
+       $thisCase = complaint::find($id);
+       return view('pages.adminSpecificCase')->with('thisCase',$thisCase);
+
+    }
+
+    public function ShowCaseForAdmin($id)
+    {
+        $thisComplaint = complaint::find($id);
+        return view('pages.adminSpecificCase')->with('thisComplaint',$thisComplaint);
+    }
 }
