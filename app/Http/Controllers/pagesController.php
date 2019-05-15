@@ -16,6 +16,13 @@ class pagesController extends Controller
     }
 
     public function studentComplaint($id){
+        $user = Auth::user();
+        $id = Auth::user()->id;
+        $student = student::find($id);
+        if($student == null){
+            return redirect('/student/complete_reg')->with('error', 'please update your profile first before continuing.');
+        }
+
         return view('pages.studentComplaint');
     }
 
@@ -23,15 +30,30 @@ class pagesController extends Controller
         $user = Auth::user();
         $id = Auth::user()->id;
         $student = student::find($id);
+        if($student == null){
+            return redirect('/student/complete_reg')->with('error', 'please update your profile first before continuing.');
+        }
         return view('pages.studentProfile')->with('studentUser',['userT' => $user, 'studentT' => $student] );
+    }
+    
+    public function studentCompleteReg() {
+        $user = Auth::user();
+        return view('pages.studentCompleteRegistration')->with('user',$user);
     }
 
     public function studentProfileupdt(){
-        return view('pages.studUpdateprof');
+        $user = Auth::user();
+        return view('pages.studUpdateprof')->with('user',$user);
     }
 
 
     public function studentHistory($id){
+        $user = Auth::user();
+        $id = Auth::user()->id;
+        $student = student::find($id);
+        if($student == null){
+            return redirect('/student/complete_reg')->with('error', 'please update your profile first before continuing.');
+        }
         return view('pages.studentHistory');
     }
 

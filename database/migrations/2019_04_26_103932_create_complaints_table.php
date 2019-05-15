@@ -18,7 +18,7 @@ class CreateComplaintsTable extends Migration
             $table->timestamps();
             $table->mediumText('details');
             $table->string('studReg');
-            $table->integer('DepNo');
+            $table->string('department');
             $table->string('SolvedBy');
             $table->string('status');
         });
