@@ -53,3 +53,7 @@ Route::get('/student/case/show/{complaint}', 'ComplaintsController@showCaseForSt
 
 Route::get('case/handler/{id}', 'ComplaintsController@ChangeStatusToOpen')->middleware('admin');
 Route::get('/case/handler/{id}/show', 'ComplaintsController@ShowCaseForAdmin')->middleware('admin');
+
+//routes for scheduling
+Route::get('schedule', 'ScheduleController@index')->name('schedule.index');
+Route::post('schedule', 'ScheduleController@setSchedule')->name('schedule.set');

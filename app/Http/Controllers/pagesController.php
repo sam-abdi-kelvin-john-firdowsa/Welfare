@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\student;
 use App\User;
 
+
 class pagesController extends Controller
 {
     //

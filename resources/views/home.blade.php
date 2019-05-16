@@ -37,6 +37,10 @@
                                         <li>                        
                                             <a href="admin/my_hist">History</a>  
                                         </li>
+
+                                        <li>                        
+                                            <a href="schedule">Inspection Schedule</a>  
+                                        </li>
                                        
                                     </ul>
                                 </div>
