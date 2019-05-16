@@ -27,51 +27,48 @@
                       </div> -->
                       <div class="row content-display">
                             <div class="col-md-3 sidenav">
-                                <h2 class="well text-center"> Some Links</h2>
-                                <div Container>
-                                    <ul id="sidenav-links">
-                                        <li>
-                                            <a href="admin/profile">Profile</a>
-                                        </li>
-                                        
-                                        <li>                        
-                                            <a href="admin/my_hist">History</a>  
-                                        </li>
-                                       
-                                    </ul>
-                                </div>
+                                          
+                                <ul>
+                                    <li>
+                                        <a href="admin/profile">Profile</a>
+                                    </li>
+                                    
+                                    <li>                        
+                                        <a href="admin/my_hist">History</a>  
+                                    </li>
+                                    
+                                </ul>
+                                
                             </div><!--Sidebar col-md-5-->
                             
-                            <div class="col-md-8">
-                            
-                                <div class="col-md-12 main-content">
-                                 <!--  <h2>Open Tasks Shows up here</h2>  -->
-                                 <h2>ADMIN DASHBOARD</h2>
+                            <div class="col-md-9" id="admin-dashboard">
+                                
+                                <div class="col-md-12">
+                                   <h2>ADMIN DASHBOARD</h2>
                                    <hr>
                                    <!-- iterate new cases -->
 
                                    @if(count($complaints)>0)
                                        @foreach ($complaints as $case)
-                                   <div class="card card-body"> 
-                                   <a href="case/handler/{{$case->id}}">
-                                       <small>REF ID: {{$case->id}}</small>
-                                   <h5>Department: {{$case->department}}</h5>
-                                      <small>DATE: {{$case->created_at}}</small>
-                                       </a>
-                                    </div>
+                                            <div class="card card-body"> 
+                                                <a href="case/handler/{{$case->id}}">
+                                                    <small>REF ID: {{$case->id}}</small>
+                                                    <h5>Department: {{$case->department}}</h5>
+                                                    <small>DATE: {{$case->created_at}}</small>
+                                                </a>
+                                            </div
                                            
                                        @endforeach
-
                                    
                                    @else
-                                   <p> filed cases appear here.</p>
+                                        <p> Filed cases appear here.</p>
                                    @endif
 
                                       <!-- end iteration of new tasks here --> 
                                 </div>
+                            </div>
                             
-                            </div>
-                            </div>
+                        </div>
                             
                             
                             
@@ -121,9 +118,7 @@
 
 <div class="row content-display">
         <div class="col-md-3 sidenav">
-            <h2 class="well text-center"> Some Links</h2>
-            <div Container>
-                <ul id="sidenav-links">
+                <ul>
                     <li>
                         <a href="/student/profile">Your Profile</a>
                     </li>
@@ -137,7 +132,6 @@
                         <a href="/student/{id}/rate_service">Rate Us</a>
                     </li>
                 </ul>
-            </div>
         </div><!--Sidebar col-md-5-->
         
         <div class="col-md-8">
