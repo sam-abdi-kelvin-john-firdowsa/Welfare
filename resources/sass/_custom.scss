@@ -1,6 +1,11 @@
 .sidenav{
-    list-style: none;
-    min-height: 100%; 
+    position:fixed;
+    height: 100%; 
+}
+.sidenav ul li{
+    list-style: none !important;
+    padding:15px 10px;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3);   
 }
 #admin-dashboard{
     width: 100%;

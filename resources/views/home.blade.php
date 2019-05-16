@@ -14,7 +14,7 @@
         @endif
 
     <div class="row justify-content-centers">
-        <div class="col-md-8s">
+        <div class="col-md-10">
 
 
         <div class="content-container container-fluid">
@@ -76,8 +76,7 @@
                             <!--====================================FOOTER====================================-->  
                             
                             <div class="footer-container">
-                            <div class="dashboard-footer">
-                                
+            
                                     <div class="row">
                                         <div class="col-lg-6 text-center">
                                             
@@ -98,21 +97,10 @@
                                     </div><!--/row -->
                                 
                             </div> <!--/footer -->
-                            </div><!--/footer-container -->
+                            
                             </div>
-                        </div>    
-                            <!-- Bootstrap core JavaScript -->                  
-                            <!-- Placed at the end of the document so the pages load faster -->
-                            
-                            <script type="text/javascript" src="js/bootstrap.min.js"></script>
-                            <script type="text/javascript" src="js/custom.js"></script>
-                            
-                      
-
-
-                            
-  
-                      <?php } 
+                        </div>   
+                    <?php } 
 
                                 if(auth()->user()->isAdmin == 0){?>
 
