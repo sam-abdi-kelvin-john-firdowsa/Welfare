@@ -1,5 +1,29 @@
 @extends('layouts.apptry')
+<style>
+    
+    .main-content{
+        height: 100vh;
+    }
+    .content-display{
+        min-height: 100vh;
+    }
+    .sidenav{
+        position:fixed;
+        height: 100%;
 
+    }
+    .sidenav ul li{
+        color: rgba(230, 230, 230, 0.9);
+        list-style: none !important;
+        padding:15px 10px;
+        border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+
+    }
+    .sidenav ul li a{
+        color: rgba(200, 200, 230, 0.9);
+
+    }
+</style>
 @section('content')
 <div class="container">
 
@@ -14,7 +38,7 @@
         @endif
 
     <div class="row justify-content-centers">
-        <div class="col-md-10">
+        <div class="col-md-12">
 
 
         <div class="content-container container-fluid">
@@ -122,7 +146,7 @@
                 </ul>
         </div><!--Sidebar col-md-5-->
         
-        <div class="col-md-8">
+        <div class="col-md-9">
         
             <div class="col-md-12 main-content">
              <!--  <h2>Open Tasks Shows up here</h2>  -->
