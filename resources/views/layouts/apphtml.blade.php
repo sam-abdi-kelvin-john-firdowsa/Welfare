@@ -42,8 +42,29 @@
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->
+
+ 
+                    <!--Nav links-->
+                    <div class="navbar-collapse collapse navbar-right">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="active nav-item">
+                                <a class="nav-link" href="#">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">FAQs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Help</a>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                    
                     </div>
                 </div>
+                 <!--where to include javascript links find out-->
 
     @yield('content')
 
