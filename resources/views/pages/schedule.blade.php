@@ -32,7 +32,7 @@
                 <div class="panel-heading">MONTHLY INSPECTION SCHEDULE</div>
              <hr>
 
-             {!! Form::open(array('route' => 'schedule.set', 'method'=>'POST', 'files'=>'true' )) !!}
+             {!! Form::open(array('route' => 'schedule.set', 'method'=>'POST', 'files'=>'true', 'autocomplete' => 'off')) !!}
              {{ csrf_field() }}
              <div class="col-xs-4 col-sm-4 col-md-4">
                  <div class="form-group">

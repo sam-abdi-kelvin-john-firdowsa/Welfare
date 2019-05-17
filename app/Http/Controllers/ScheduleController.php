@@ -49,13 +49,13 @@ class ScheduleController extends Controller
      
       $lastMonthEntries = complaint::whereBetween(DB::raw('date(created_at)'), [$firstDayOfLastMonth, $lastDayOfLastMonth])->groupBy('department')->select('department')->get();
       $thisMonthEntries = complaint::where('created_at', '>=', Carbon::now()->subMonth())->groupBy('department')->select('department')->get();
-     # $complaints_no_desc = complaint::where('created_at', '>=', Carbon::now()->subMonth())->groupBy('department')->select('department', DB::raw('count(*) AS total'))->get();
-      # $i = 0;
-     #  $i <= 3;
+     // $complaints_no_desc = complaint::where('created_at', '>=', Carbon::now()->subMonth())->groupBy('department')->select('department', DB::raw('count(*) AS total'))->get();
+       #$i = 0;
+      # $i <= 3;
       # $complaintsInDec = array(0,0,0,0);
-      # foreach($complaints_no_desc as $compl ){
-      #    $complaintsInDec[$i] = $compl;
-       #   $i = $i + 1;
+       #foreach($complaints_no_desc as $compl ){
+        #  $complaintsInDec[$i] = $compl;
+        #  $i = $i + 1;
      # }
      // if($lastMonthEntries != null){}
 
@@ -77,7 +77,7 @@ class ScheduleController extends Controller
 
      //if there are no entries from last month
       if(sizeof($lastMonthEntries)==0){
-        $complaints_no_desc = complaint::where('created_at', '>=', Carbon::now()->subMonth())->groupBy('department')->select('department', DB::raw('count(*) AS total'))->get();
+        $complaints_no_desc = complaint::where('created_at', '>=', Carbon::now()->subMonth())->groupBy('department')->select('department', DB::raw('count(*) AS total'))->orderBy('total', 'desc')->get();
         $i = 0;
         $i <= 3;
         $complaintsInDec = array(0,0,0,0);
@@ -98,7 +98,7 @@ class ScheduleController extends Controller
 
        //if size of  complaints_no_desc == 3
        elseif(sizeof($complaints_no_desc)==3){
-        if(in_array('accomodation', $complaints_no_desc)==false){
+        if(! in_array('accomodation', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -107,7 +107,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-                    elseif(in_array('security', $complaints_no_desc)==false){
+                    elseif(! in_array('security', $complaintsInDec)){
                         $schedules = array(
                             array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                             array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -116,7 +116,7 @@ class ScheduleController extends Controller
                         ); 
                         Schedule::insert($schedules);
                     }
-                    elseif(in_array('catering', $complaints_no_desc)==false){
+                    elseif(! in_array('catering', $complaintsInDec)){
                         $schedules = array(
                             array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                             array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -125,7 +125,7 @@ class ScheduleController extends Controller
                         ); 
                         Schedule::insert($schedules);                         
                     }
-                    elseif(in_array('disability', $complaints_no_desc)==false){
+                    elseif(! in_array('disability', $complaintsInDec)){
                         $schedules = array(
                             array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                             array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -138,7 +138,7 @@ class ScheduleController extends Controller
     }
        //if size of  complaints_no_desc == 2
        elseif(sizeof($complaints_no_desc)==2){
-        if(in_array('disability', $complaints_no_desc)==false && in_array('catering', $complaints_no_desc)==false ){
+        if( ! in_array('catering', $complaintsInDec) && ! in_array('disability', $complaintsInDec) ){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -148,7 +148,7 @@ class ScheduleController extends Controller
             Schedule::insert($schedules);
         }
 
-        elseif(in_array('disability', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false ){
+        elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('disability', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -158,7 +158,7 @@ class ScheduleController extends Controller
             Schedule::insert($schedules);
         }
                     
-        elseif(in_array('disability', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+        elseif(! in_array('security', $complaintsInDec) && ! in_array('disability', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -167,7 +167,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-        elseif(in_array('catering', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false ){
+        elseif(! in_array('catering', $complaintsInDec) && ! in_array('accomodation', $complaintsInDec) ){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -176,7 +176,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-        elseif(in_array('catering', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+        elseif(! in_array('catering', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -185,7 +185,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-        elseif(in_array('accomodation', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+        elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -194,11 +194,10 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-    }
-            
+    }      
        //if size of  complaints_no_desc == 1
        elseif(sizeof($complaints_no_desc)==1){
-        if(in_array('disability', $complaints_no_desc)==false && in_array('catering', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false ){
+        if( in_array('security', $complaintsInDec) ){
          $schedules = array(
                  array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                  array('visit_on' => $request['day2'], 'department' => 'disability'),
@@ -208,7 +207,7 @@ class ScheduleController extends Controller
              Schedule::insert($schedules);
      }
  
-     elseif(in_array('disability', $complaints_no_desc)==false && in_array('catering', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+     elseif(in_array('accomodation', $complaintsInDec)){
          $schedules = array(
                  array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                  array('visit_on' => $request['day2'], 'department' => 'disability'),
@@ -216,8 +215,9 @@ class ScheduleController extends Controller
                  array('visit_on' => $request['day4'], 'department' => 'security')
              ); 
              Schedule::insert($schedules);
+             return $complaints_no_desc;
      }
-     elseif(in_array('disability', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+     elseif(in_array('catering', $complaintsInDec) ){
          $schedules = array(
                  array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                  array('visit_on' => $request['day2'], 'department' => 'disability'),
@@ -226,7 +226,7 @@ class ScheduleController extends Controller
              ); 
              Schedule::insert($schedules);
      }
-     elseif(in_array('catering', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+     elseif(in_array('disability', $complaintsInDec) ){
          $schedules = array(
                  array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                  array('visit_on' => $request['day2'], 'department' => 'catering'),
@@ -238,7 +238,7 @@ class ScheduleController extends Controller
  }
  
        //if size of  complaints_no_desc == 0
-       else{
+        else{
         $schedules = array(
             array('visit_on' => $request['day1'], 'department' => 'disability'),
             array('visit_on' => $request['day2'], 'department' => 'catering'),
@@ -252,14 +252,22 @@ class ScheduleController extends Controller
       }
       //when there are entries from last month
       else{
-        $complaints_no_desc = complaint::whereBetween(DB::raw('date(created_at)'), [$firstDayOfLastMonth, $lastDayOfLastMonth])->groupBy('department')->select('department', DB::raw('count(*) AS total'))->get();
+        $complaints_no_desc = complaint::whereBetween(DB::raw('date(created_at)'), [$firstDayOfLastMonth, $lastDayOfLastMonth])->groupBy('department')->select('department', DB::raw('count(*) AS total'))->orderBy('total', 'desc')->get();
         $i = 0;
         $i <= 3;
-        $complaintsInDec = array(0,0,0,0);
+        $complaintsInDec = array();
         foreach($complaints_no_desc as $compl ){
-           $complaintsInDec[$i] = $compl;
+           $complaintsInDec[$i] = $compl->department;
            $i = $i + 1;
        }
+     /*   
+      if(in_array('disability', $complaintsInDec)){
+       return 'YES'; }
+       elseif(! in_array('disability', $complaintsInDec)){
+        return 'NO'; }
+       else{
+           return 'FUCK';
+       }*/
 
        //if size of  complaints_no_desc == 4
        if(sizeof($complaints_no_desc)==4){
@@ -274,7 +282,7 @@ class ScheduleController extends Controller
 
        //if size of  complaints_no_desc == 3
        elseif(sizeof($complaints_no_desc)==3){
-        if(in_array('accomodation', $complaints_no_desc)==false){
+        if(! in_array('accomodation', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -283,7 +291,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-                    elseif(in_array('security', $complaints_no_desc)==false){
+                    elseif(! in_array('security', $complaintsInDec)){
                         $schedules = array(
                             array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                             array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -292,7 +300,7 @@ class ScheduleController extends Controller
                         ); 
                         Schedule::insert($schedules);
                     }
-                    elseif(in_array('catering', $complaints_no_desc)==false){
+                    elseif(! in_array('catering', $complaintsInDec)){
                         $schedules = array(
                             array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                             array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -301,7 +309,7 @@ class ScheduleController extends Controller
                         ); 
                         Schedule::insert($schedules);                         
                     }
-                    elseif(in_array('disability', $complaints_no_desc)==false){
+                    elseif(! in_array('disability', $complaintsInDec)){
                         $schedules = array(
                             array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                             array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -314,7 +322,7 @@ class ScheduleController extends Controller
     }
        //if size of  complaints_no_desc == 2
        elseif(sizeof($complaints_no_desc)==2){
-        if(in_array('disability', $complaints_no_desc)==false && in_array('catering', $complaints_no_desc)==false ){
+        if( ! in_array('catering', $complaintsInDec) && ! in_array('disability', $complaintsInDec) ){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -322,9 +330,11 @@ class ScheduleController extends Controller
                 array('visit_on' => $request['day4'], 'department' => 'catering')
             ); 
             Schedule::insert($schedules);
+
+           
         }
 
-        elseif(in_array('disability', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false ){
+        elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('disability', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -334,7 +344,7 @@ class ScheduleController extends Controller
             Schedule::insert($schedules);
         }
                     
-        elseif(in_array('disability', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+        elseif(!in_array('security', $complaintsInDec) && !in_array('disability', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -342,8 +352,9 @@ class ScheduleController extends Controller
                 array('visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
+           // return 'I am here';
         }
-        elseif(in_array('catering', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false ){
+        elseif(! in_array('catering', $complaintsInDec) && ! in_array('accomodation', $complaintsInDec) ){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -352,7 +363,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-        elseif(in_array('catering', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+        elseif(! in_array('catering', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -361,7 +372,7 @@ class ScheduleController extends Controller
             ); 
             Schedule::insert($schedules);
         }
-        elseif(in_array('accomodation', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+        elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
                 array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
@@ -373,9 +384,9 @@ class ScheduleController extends Controller
     }
        //if size of  complaints_no_desc == 1
        elseif(sizeof($complaints_no_desc)==1){
-       if(in_array('disability', $complaints_no_desc)==false && in_array('catering', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false ){
+       if( in_array('security', $complaintsInDec) ){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('visit_on' => $request['day1'], 'department' => 'security'),
                 array('visit_on' => $request['day2'], 'department' => 'disability'),
                 array('visit_on' => $request['day3'], 'department' => 'catering'),
                 array('visit_on' => $request['day4'], 'department' => 'accomodation')
@@ -383,27 +394,27 @@ class ScheduleController extends Controller
             Schedule::insert($schedules);
     }
 
-    elseif(in_array('disability', $complaints_no_desc)==false && in_array('catering', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+    elseif(in_array('accomodation', $complaintsInDec)){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('visit_on' => $request['day1'], 'department' => 'accomodation'),
                 array('visit_on' => $request['day2'], 'department' => 'disability'),
                 array('visit_on' => $request['day3'], 'department' => 'catering'),
                 array('visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
     }
-    elseif(in_array('disability', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+    elseif(in_array('catering', $complaintsInDec) ){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('visit_on' => $request['day1'], 'department' => 'catering'),
                 array('visit_on' => $request['day2'], 'department' => 'disability'),
                 array('visit_on' => $request['day3'], 'department' => 'accomodation'),
                 array('visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
     }
-    elseif(in_array('catering', $complaints_no_desc)==false && in_array('accomodation', $complaints_no_desc)==false && in_array('security', $complaints_no_desc)==false ){
+    elseif(in_array('disability', $complaintsInDec) ){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('visit_on' => $request['day1'], 'department' => 'disability'),
                 array('visit_on' => $request['day2'], 'department' => 'catering'),
                 array('visit_on' => $request['day3'], 'department' => 'accomodation'),
                 array('visit_on' => $request['day4'], 'department' => 'security')
@@ -411,7 +422,7 @@ class ScheduleController extends Controller
             Schedule::insert($schedules);
     }
 }
- 
+
        //if size of  complaints_no_desc == 0
        else{
         $schedules = array(
@@ -422,18 +433,26 @@ class ScheduleController extends Controller
         ); 
         Schedule::insert($schedules);
     }
-
+ 
+   
+   /* if(in_array('disability', $complaintsInDec)){
+        return  sizeof($complaints_no_desc); }
+        elseif(! in_array('disability', $complaintsInDec)){
+         return  sizeof($complaints_no_desc); }
+        else{
+            return 'FUCK';
+        }
+*/
 
         }
     
      
 
        
-
        
      
         
-        return redirect('schedule');
+    return redirect('schedule');
     }
 }
 
