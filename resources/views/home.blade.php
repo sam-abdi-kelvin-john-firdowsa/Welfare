@@ -21,7 +21,14 @@
     }
     .sidenav ul li a{
         color: rgba(200, 200, 230, 0.9);
+        text-decoration: none;
 
+    }
+    .sidenav ul li:hover{
+        background-color: grey;
+    }
+    .footer-container{
+        bottom:0;
     }
 </style>
 @section('content')
@@ -152,12 +159,7 @@
              <!--  <h2>Open Tasks Shows up here</h2>  -->
              <h2>STUDENT DASHBOARD</h2>
                <hr>
-               <P>
-                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus necessitatibus velit consequuntur, deleniti corrupti laboriosam et repudiandae modi ea amet! Quibusdam hic culpa aliquid numquam. Explicabo officiis ex id, mollitia quibusdam velit vitae magnam reiciendis quasi temporibus, corporis nobis obcaecati esse voluptas voluptatibus aperiam tempore minima dolore eligendi ut repellat fugit modi aliquid. Nam doloribus temporibus quidem qui iure magni autem? Nisi provident ut fugiat, quisquam ullam quaerat, alias cupiditate aperiam officiis suscipit eius. Fugit quod modi vitae, voluptatum aliquam maiores unde, sapiente culpa veniam rerum exercitationem neque debitis beatae ipsam quibusdam corporis quos accusantium consequatur ut ipsa iure adipisci.
-               </P>
-               <p>
-                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit illo provident qui nihil, soluta ut. Culpa nisi aut ea quibusdam cum tenetur at ipsa, repudiandae nihil, consectetur officia autem sequi iure vel modi ratione quod voluptate debitis quia! Libero rem pariatur assumenda at ut illum harum, adipisci, laudantium exercitationem, cupiditate ad officia nisi ea alias nobis perspiciatis maxime error. Maiores perferendis quam atque corporis culpa odio saepe placeat dolorem ea voluptatem, quas nostrum quis aut officia incidunt accusamus nulla fugit aperiam illum soluta velit ipsam molestias? Voluptas hic, nemo possimus magni provident recusandae unde quod laudantium iste suscipit enim neque ex quos? Cumque consequatur nihil atque labore corrupti, reprehenderit obcaecati neque cum, corporis natus ab earum a aspernatur quis iusto molestiae officia aperiam voluptatibus omnis pariatur, sint culpa odio voluptate consectetur. Tenetur recusandae iste porro magnam quisquam consequatur sint provident dolorum explicabo, distinctio laudantium perferendis dignissimos sunt nisi dolore expedita aspernatur architecto esse! Veritatis iusto quas impedit fugit autem adipisci vel, culpa officiis doloribus suscipit quo, eaque perferendis. Dolorem sint voluptatibus libero vitae sed quasi odio deleniti quia iure, inventore, corporis laborum ea exercitationem excepturi quibusdam modi maiores tempora! Ipsa modi numquam consectetur temporibus beatae corrupti aut saepe, nisi dolorem.
-               </p>
+               
                    
             </div>
         

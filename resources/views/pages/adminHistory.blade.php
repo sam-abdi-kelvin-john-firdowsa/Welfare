@@ -1,7 +1,7 @@
 @extends('layouts.apptry');
 
 @section('content')
-    <div class="container col-8 offset-2 d-flex">
+    <div class="container justify-content-center">
        <ol>
            <li>Case One</li>
            <li>Case Two</li>
