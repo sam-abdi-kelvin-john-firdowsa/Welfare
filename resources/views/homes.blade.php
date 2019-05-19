@@ -71,7 +71,7 @@
                                 </ul>
                                 
                             </div>
-                        </div> <!--Sidebar col-md-5-->
+                            </div> <!--Sidebar col-md-5-->
                             
                             <div class="col-md-9" id="admin-dashboard">
                                 

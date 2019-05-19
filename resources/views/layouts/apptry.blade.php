@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <a class="navbar-brand" href="#"><img src="{{asset('images/icons/eu.png')}}" ALT="logo" id="logo" height="50" width="50"></a>
+                    <a class="navbar-brand" href="/home"><img src="{{asset('images/icons/eu.png')}}" ALT="logo" id="logo" height="50" width="50"></a>
                     <p style="text-align:left" id="brand">Directorate of <br> University Welfare</p>
                     <!--  {{ config('app.name', 'Laravel') }} -->
                 </a>

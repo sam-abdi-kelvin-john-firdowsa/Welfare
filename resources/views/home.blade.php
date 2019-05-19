@@ -31,6 +31,8 @@
     .footer-container{
         bottom:0;
     }
+
+  
 </style>
 
 @section('content')
@@ -63,15 +65,15 @@
                                 <h2 class="well text-center"> Some Links</h2>
                                 <div Container>
                                     <ul id="sidenav-links">
-                                        <li>
+                                        <li class="wave-effects">
                                             <a href="admin/profile">Profile</a>
                                         </li>
                                         
-                                        <li>                        
+                                        <li class="wave-effects">                        
                                             <a href="admin/my_hist">History</a>  
                                         </li>
 
-                                        <li>                        
+                                        <li class="wave-effects">                        
                                             <a href="schedule">Inspection Schedule</a>  
                                         </li>
                                        
@@ -157,6 +159,10 @@
                                 if(auth()->user()->isAdmin == 0){?>
 
 <div class="row content-display">
+
+
+
+
         <div class="col-md-3 sidenav">
             <h2 class="well text-center"> Some Links</h2>
             <div Container>
@@ -175,7 +181,8 @@
                     </li>
                 </ul>
             </div>
-        </div><!--Sidebar col-md-5-->
+        </div> 
+        <!--Sidebar col-md-5-->
         
         <div class="col-md-8">
         
@@ -257,4 +264,6 @@
 
     </div>
 </div>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="{{URL::asset('assets/js/nav.js')}}"></script>
 @endsection
