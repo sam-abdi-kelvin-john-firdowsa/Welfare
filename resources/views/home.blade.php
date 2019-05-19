@@ -1,5 +1,36 @@
 @extends('layouts.apptry')
+<style>
+    
+    .main-content{
+        height: 100vh;
+    }
+    .content-display{
+        min-height: 100vh;
+    }
+    .sidenav{
+        position:fixed;
+        height: 100%;
 
+    }
+    .sidenav ul li{
+        color: rgba(230, 230, 230, 0.9);
+        list-style: none !important;
+        padding:15px 10px;
+        border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+
+    }
+    .sidenav ul li a{
+        color: rgba(200, 200, 230, 0.9);
+        text-decoration: none;
+
+    }
+    .sidenav ul li:hover{
+        background-color: grey;
+    }
+    .footer-container{
+        bottom:0;
+    }
+</style>
 @section('content')
 <div class="container">
 
@@ -14,7 +45,7 @@
         @endif
 
     <div class="row justify-content-centers">
-        <div class="col-md-8s">
+        <div class="col-md-12">
 
 
         <div class="content-container container-fluid">
@@ -27,6 +58,7 @@
                       </div> -->
                       <div class="row content-display">
                             <div class="col-md-3 sidenav">
+<<<<<<< HEAD
                                 <h2 class="well text-center"> Some Links</h2>
                                 <div Container>
                                     <ul id="sidenav-links">
@@ -44,38 +76,50 @@
                                        
                                     </ul>
                                 </div>
+=======
+                                          
+                                <ul>
+                                    <li>
+                                        <a href="admin/profile">Profile</a>
+                                    </li>
+                                    
+                                    <li>                        
+                                        <a href="admin/my_hist">History</a>  
+                                    </li>
+                                    
+                                </ul>
+                                
+>>>>>>> 503149cad525c0627a7652684efadf809f71750c
                             </div><!--Sidebar col-md-5-->
                             
-                            <div class="col-md-8">
-                            
-                                <div class="col-md-12 main-content">
-                                 <!--  <h2>Open Tasks Shows up here</h2>  -->
-                                 <h2>ADMIN DASHBOARD</h2>
+                            <div class="col-md-9" id="admin-dashboard">
+                                
+                                <div class="col-md-12">
+                                   <h2>ADMIN DASHBOARD</h2>
                                    <hr>
                                    <!-- iterate new cases -->
 
                                    @if(count($complaints)>0)
                                        @foreach ($complaints as $case)
-                                   <div class="card card-body"> 
-                                   <a href="case/handler/{{$case->id}}">
-                                       <small>REF ID: {{$case->id}}</small>
-                                   <h5>Department: {{$case->department}}</h5>
-                                      <small>DATE: {{$case->created_at}}</small>
-                                       </a>
-                                    </div>
+                                            <div class="card card-body"> 
+                                                <a href="case/handler/{{$case->id}}">
+                                                    <small>REF ID: {{$case->id}}</small>
+                                                    <h5>Department: {{$case->department}}</h5>
+                                                    <small>DATE: {{$case->created_at}}</small>
+                                                </a>
+                                            </div
                                            
                                        @endforeach
-
                                    
                                    @else
-                                   <p> filed cases appear here.</p>
+                                        <p> Filed cases appear here.</p>
                                    @endif
 
                                       <!-- end iteration of new tasks here --> 
                                 </div>
+                            </div>
                             
-                            </div>
-                            </div>
+                        </div>
                             
                             
                             
@@ -83,8 +127,7 @@
                             <!--====================================FOOTER====================================-->  
                             
                             <div class="footer-container">
-                            <div class="dashboard-footer">
-                                
+            
                                     <div class="row">
                                         <div class="col-lg-6 text-center">
                                             
@@ -105,29 +148,16 @@
                                     </div><!--/row -->
                                 
                             </div> <!--/footer -->
-                            </div><!--/footer-container -->
+                            
                             </div>
-                        </div>    
-                            <!-- Bootstrap core JavaScript -->                  
-                            <!-- Placed at the end of the document so the pages load faster -->
-                            
-                            <script type="text/javascript" src="js/bootstrap.min.js"></script>
-                            <script type="text/javascript" src="js/custom.js"></script>
-                            
-                      
-
-
-                            
-  
-                      <?php } 
+                        </div>   
+                    <?php } 
 
                                 if(auth()->user()->isAdmin == 0){?>
 
 <div class="row content-display">
         <div class="col-md-3 sidenav">
-            <h2 class="well text-center"> Some Links</h2>
-            <div Container>
-                <ul id="sidenav-links">
+                <ul>
                     <li>
                         <a href="/student/profile">Your Profile</a>
                     </li>
@@ -141,21 +171,15 @@
                         <a href="/student/{id}/rate_service">Rate Us</a>
                     </li>
                 </ul>
-            </div>
         </div><!--Sidebar col-md-5-->
         
-        <div class="col-md-8">
+        <div class="col-md-9">
         
             <div class="col-md-12 main-content">
              <!--  <h2>Open Tasks Shows up here</h2>  -->
              <h2>STUDENT DASHBOARD</h2>
                <hr>
-               <P>
-                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus necessitatibus velit consequuntur, deleniti corrupti laboriosam et repudiandae modi ea amet! Quibusdam hic culpa aliquid numquam. Explicabo officiis ex id, mollitia quibusdam velit vitae magnam reiciendis quasi temporibus, corporis nobis obcaecati esse voluptas voluptatibus aperiam tempore minima dolore eligendi ut repellat fugit modi aliquid. Nam doloribus temporibus quidem qui iure magni autem? Nisi provident ut fugiat, quisquam ullam quaerat, alias cupiditate aperiam officiis suscipit eius. Fugit quod modi vitae, voluptatum aliquam maiores unde, sapiente culpa veniam rerum exercitationem neque debitis beatae ipsam quibusdam corporis quos accusantium consequatur ut ipsa iure adipisci.
-               </P>
-               <p>
-                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit illo provident qui nihil, soluta ut. Culpa nisi aut ea quibusdam cum tenetur at ipsa, repudiandae nihil, consectetur officia autem sequi iure vel modi ratione quod voluptate debitis quia! Libero rem pariatur assumenda at ut illum harum, adipisci, laudantium exercitationem, cupiditate ad officia nisi ea alias nobis perspiciatis maxime error. Maiores perferendis quam atque corporis culpa odio saepe placeat dolorem ea voluptatem, quas nostrum quis aut officia incidunt accusamus nulla fugit aperiam illum soluta velit ipsam molestias? Voluptas hic, nemo possimus magni provident recusandae unde quod laudantium iste suscipit enim neque ex quos? Cumque consequatur nihil atque labore corrupti, reprehenderit obcaecati neque cum, corporis natus ab earum a aspernatur quis iusto molestiae officia aperiam voluptatibus omnis pariatur, sint culpa odio voluptate consectetur. Tenetur recusandae iste porro magnam quisquam consequatur sint provident dolorum explicabo, distinctio laudantium perferendis dignissimos sunt nisi dolore expedita aspernatur architecto esse! Veritatis iusto quas impedit fugit autem adipisci vel, culpa officiis doloribus suscipit quo, eaque perferendis. Dolorem sint voluptatibus libero vitae sed quasi odio deleniti quia iure, inventore, corporis laborum ea exercitationem excepturi quibusdam modi maiores tempora! Ipsa modi numquam consectetur temporibus beatae corrupti aut saepe, nisi dolorem.
-               </p>
+               
                    
             </div>
         

@@ -24,8 +24,19 @@ class LoginController extends Controller
      * Where to redirect users after login.
      *
      * @var string
+     * protected $redirectTo = '/home';
      */
     protected $redirectTo = '/home';
+    // protected function redirectTo(){
+        
+    //     if(auth()->user()->isAdmin == 1)
+    //         return redirect('/admin/dash')->with('success', 'Welcome Buddy');
+         
+    //     else{
+    //         return redirect('/student/{Auth::User()->id}/profile')->with('success', 'Welcome Buddy') 
+    //     }
+        
+    // }
 
     /**
      * Create a new controller instance.

@@ -28,9 +28,6 @@ html,
      width:100%;
      background:rgb(236, 240, 224);
   }
-  .registration-footer{
-    background-color:black;
-
   }
   div.sidenav{
     background-color: #f4f4f4;
@@ -77,10 +74,3 @@ html,
   padding-top: 5px;
   padding: 5px 0px 5px 4px;
 }
-
- body {
-  background-image: url('./images/bg.jpeg');
-  background-repeat: no-repeat; 
-  background-position: 10% 10%; 
-  background-attachment: fixed
-  } 
