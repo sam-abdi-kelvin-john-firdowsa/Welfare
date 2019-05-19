@@ -31,16 +31,21 @@
              
                 <div class="panel-heading">MONTHLY INSPECTION SCHEDULE</div>
              <hr>
-
-             {!! Form::open(array('route' => 'schedule.set', 'method'=>'POST', 'files'=>'true', 'autocomplete' => 'off')) !!}
-             {{ csrf_field() }}
-             <div class="col-xs-4 col-sm-4 col-md-4">
+             @if (count($schedule) == 0)
+             
+                {!! Form::open(array('route' => 'schedule.set', 'method'=>'POST', 'files'=>'true', 'autocomplete' => 'off')) !!}
+                {{ csrf_field() }}
+                <div class="col-xs-4 col-sm-4 col-md-4">
                  <div class="form-group">
-                     {!! Form::label('events', 'Input Inspection Dates')!!}
-                     {!! Form::date('day1',null,['class'=>'form-control'] )!!}
-                     {!! Form::date('day2',null,['class'=>'form-control'] )!!}
-                     {!! Form::date('day3',null,['class'=>'form-control'] )!!}
-                     {!! Form::date('day4',null,['class'=>'form-control'] )!!}
+                     {!! Form::label('day', 'Input Inspection Dates')!!}
+                   <div> {!! Form::label('events', 'Day 1')!!}
+                       {!! Form::date('day1',null,['class'=>'form-control'] )!!}</div>  
+                   <div> {!! Form::label('day', 'Day 2')!!}
+                       {!! Form::date('day2',null,['class'=>'form-control'] )!!}</div> 
+                   <div> {!! Form::label('day', 'Day 3')!!}
+                       {!! Form::date('day3',null,['class'=>'form-control'] )!!}</div>  
+                   <div> {!! Form::label('day', 'Day 4')!!}
+                       {!! Form::date('day4',null,['class'=>'form-control'] )!!}</div> 
                  </div>
                  <div class="col-xs-1 col-sm-1 col-md-1 text-centre"> &nbsp; <br>
                     {!! Form::submit('Set Dates',['class'=>'btn btn-primary'] )!!}
@@ -49,7 +54,46 @@
              </div>
              {!!Form::close() !!}
                
+
+              @else 
+            <p>The schedule for period <strong>{{$for_period}}</strong>  has been set. <br> However, you can edit the set dates. </p>
+             @endif
+
                <!-- calendar shows here -->
+               <br>
+               <br>
+               <hr>
+
+               <div class="">
+                   @if(count($schedule) > 0)
+
+                   <div class="table">
+                       <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">No.</th>
+                                   <th scope="col">Department</th>
+                                   <th scope="col">Visit on</th>
+                               </tr>
+                           </thead>
+                           <?php $i = 0 ?>
+                           @foreach ($schedule as $sch)
+                           <?php $i++ ?>
+                           
+                               <tr>
+                               <th scope="row">{{$i}}</th>
+                               <td>{{$sch->department}}</td>
+                               <td>{{$sch->visit_on}}</td>
+                               </tr>
+                           @endforeach
+                       </table>
+                   </div>
+
+                   @else
+                   <h3>Schedule has not been set yet.</h3>
+
+                   @endif
+               </div>
 
               
                   <!-- end calendar here --> 

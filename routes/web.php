@@ -57,3 +57,4 @@ Route::get('/case/handler/{id}/show', 'ComplaintsController@ShowCaseForAdmin')->
 //routes for scheduling
 Route::get('schedule', 'ScheduleController@index')->name('schedule.index');
 Route::post('schedule', 'ScheduleController@setSchedule')->name('schedule.set');
+Route::get('get_scheduled', 'ScheduleController@showSchedule')->name('schedule.get');

@@ -16,6 +16,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $schedule = Schedule::get();
+        $schedule = Schedule::where('for_period', 'pending review')->get();
 
         return view('pages.schedule');
     }
@@ -24,6 +25,9 @@ class ScheduleController extends Controller
     { 
         $this->validate(request(),[
             "day1"=> 'required',
+            "day2"=> 'required',
+            "day3"=> 'required',
+            "day4"=> 'required',
            // "desc"=> 'required'
         ]);
 
@@ -39,6 +43,7 @@ class ScheduleController extends Controller
             $currentTime = Carbon::now();
             $currentYear = Carbon::createFromFormat('Y-m-d H:i:s', $currentTime)->year;
             $currentMonth = Carbon::createFromFormat('Y-m-d H:i:s', $currentTime)->month;
+            $for_period = Carbon::now()->format('Y M');
         //get range of dates in last month
       //  $lastMonth 
       $firstDayOfLastMonth = Carbon::now()->subMonth()->startOfMonth()->toDateString();
@@ -85,13 +90,13 @@ class ScheduleController extends Controller
            $complaintsInDec[$i] = $compl;
            $i = $i + 1;
        }
-       //if size of  complaints_no_desc == 4
+          //if size of  complaints_no_desc == 4
        if(sizeof($complaints_no_desc)==4){
         $schedules = array(
-            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-            array('visit_on' => $request['day4'], 'department' => $complaints_no_desc[3]->department)
+            array('for_period'=> $for_period,'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => $complaints_no_desc[3]->department)
         ); 
         Schedule::insert($schedules);
        }
@@ -100,37 +105,37 @@ class ScheduleController extends Controller
        elseif(sizeof($complaints_no_desc)==3){
         if(! in_array('accomodation', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
         }
                     elseif(! in_array('security', $complaintsInDec)){
                         $schedules = array(
-                            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                            array('visit_on' => $request['day4'], 'department' => 'security')
+                            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
                         ); 
                         Schedule::insert($schedules);
                     }
                     elseif(! in_array('catering', $complaintsInDec)){
                         $schedules = array(
-                            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                            array('visit_on' => $request['day4'], 'department' => 'catering')
+                            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'catering')
                         ); 
                         Schedule::insert($schedules);                         
                     }
                     elseif(! in_array('disability', $complaintsInDec)){
                         $schedules = array(
-                            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                            array('visit_on' => $request['day4'], 'department' => 'disability')
+                            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'disability')
                         ); 
                         Schedule::insert($schedules);
         
@@ -140,116 +145,128 @@ class ScheduleController extends Controller
        elseif(sizeof($complaints_no_desc)==2){
         if( ! in_array('catering', $complaintsInDec) && ! in_array('disability', $complaintsInDec) ){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'disability'),
-                array('visit_on' => $request['day4'], 'department' => 'catering')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'catering')
             ); 
             Schedule::insert($schedules);
+
+           
         }
 
         elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('disability', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'disability'),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
         }
                     
-        elseif(! in_array('security', $complaintsInDec) && ! in_array('disability', $complaintsInDec)){
+        elseif(!in_array('security', $complaintsInDec) && !in_array('disability', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'disability'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
+           // return 'I am here';
         }
         elseif(! in_array('catering', $complaintsInDec) && ! in_array('accomodation', $complaintsInDec) ){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'catering'),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
         }
         elseif(! in_array('catering', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'catering'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
         }
         elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
         }
-    }      
+    }
        //if size of  complaints_no_desc == 1
        elseif(sizeof($complaints_no_desc)==1){
-        if( in_array('security', $complaintsInDec) ){
-         $schedules = array(
-                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                 array('visit_on' => $request['day2'], 'department' => 'disability'),
-                 array('visit_on' => $request['day3'], 'department' => 'catering'),
-                 array('visit_on' => $request['day4'], 'department' => 'accomodation')
-             ); 
-             Schedule::insert($schedules);
-     }
- 
-     elseif(in_array('accomodation', $complaintsInDec)){
-         $schedules = array(
-                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                 array('visit_on' => $request['day2'], 'department' => 'disability'),
-                 array('visit_on' => $request['day3'], 'department' => 'catering'),
-                 array('visit_on' => $request['day4'], 'department' => 'security')
-             ); 
-             Schedule::insert($schedules);
-             return $complaints_no_desc;
-     }
-     elseif(in_array('catering', $complaintsInDec) ){
-         $schedules = array(
-                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                 array('visit_on' => $request['day2'], 'department' => 'disability'),
-                 array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-                 array('visit_on' => $request['day4'], 'department' => 'security')
-             ); 
-             Schedule::insert($schedules);
-     }
-     elseif(in_array('disability', $complaintsInDec) ){
-         $schedules = array(
-                 array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                 array('visit_on' => $request['day2'], 'department' => 'catering'),
-                 array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-                 array('visit_on' => $request['day4'], 'department' => 'security')
-             ); 
-             Schedule::insert($schedules);
-     }
- }
- 
-       //if size of  complaints_no_desc == 0
-        else{
+       if( in_array('security', $complaintsInDec) ){
         $schedules = array(
-            array('visit_on' => $request['day1'], 'department' => 'disability'),
-            array('visit_on' => $request['day2'], 'department' => 'catering'),
-            array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-            array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'security'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
+            ); 
+            Schedule::insert($schedules);
+    }
+
+    elseif(in_array('accomodation', $complaintsInDec)){
+        $schedules = array(
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
+            ); 
+            Schedule::insert($schedules);
+    }
+    elseif(in_array('catering', $complaintsInDec) ){
+        $schedules = array(
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
+            ); 
+            Schedule::insert($schedules);
+    }
+    elseif(in_array('disability', $complaintsInDec) ){
+        $schedules = array(
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
+            ); 
+            Schedule::insert($schedules);
+    }
+}
+
+       //if size of  complaints_no_desc == 0
+       else{
+        $schedules = array(
+            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'disability'),
+            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'catering'),
+            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
         ); 
         Schedule::insert($schedules);
     }
+ 
+   
+   /* if(in_array('disability', $complaintsInDec)){
+        return  sizeof($complaints_no_desc); }
+        elseif(! in_array('disability', $complaintsInDec)){
+         return  sizeof($complaints_no_desc); }
+        else{
+            return 'FUCK';
+        }
+*/
 
-
-      }
+        }
+    
       //when there are entries from last month
       else{
         $complaints_no_desc = complaint::whereBetween(DB::raw('date(created_at)'), [$firstDayOfLastMonth, $lastDayOfLastMonth])->groupBy('department')->select('department', DB::raw('count(*) AS total'))->orderBy('total', 'desc')->get();
@@ -272,10 +289,10 @@ class ScheduleController extends Controller
        //if size of  complaints_no_desc == 4
        if(sizeof($complaints_no_desc)==4){
         $schedules = array(
-            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-            array('visit_on' => $request['day4'], 'department' => $complaints_no_desc[3]->department)
+            array('for_period'=> $for_period,'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => $complaints_no_desc[3]->department)
         ); 
         Schedule::insert($schedules);
        }
@@ -284,37 +301,37 @@ class ScheduleController extends Controller
        elseif(sizeof($complaints_no_desc)==3){
         if(! in_array('accomodation', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
         }
                     elseif(! in_array('security', $complaintsInDec)){
                         $schedules = array(
-                            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                            array('visit_on' => $request['day4'], 'department' => 'security')
+                            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
                         ); 
                         Schedule::insert($schedules);
                     }
                     elseif(! in_array('catering', $complaintsInDec)){
                         $schedules = array(
-                            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                            array('visit_on' => $request['day4'], 'department' => 'catering')
+                            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'catering')
                         ); 
                         Schedule::insert($schedules);                         
                     }
                     elseif(! in_array('disability', $complaintsInDec)){
                         $schedules = array(
-                            array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                            array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                            array('visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
-                            array('visit_on' => $request['day4'], 'department' => 'disability')
+                            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => $complaints_no_desc[2]->department),
+                            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'disability')
                         ); 
                         Schedule::insert($schedules);
         
@@ -324,10 +341,10 @@ class ScheduleController extends Controller
        elseif(sizeof($complaints_no_desc)==2){
         if( ! in_array('catering', $complaintsInDec) && ! in_array('disability', $complaintsInDec) ){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'disability'),
-                array('visit_on' => $request['day4'], 'department' => 'catering')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'catering')
             ); 
             Schedule::insert($schedules);
 
@@ -336,48 +353,48 @@ class ScheduleController extends Controller
 
         elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('disability', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'disability'),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
         }
                     
         elseif(!in_array('security', $complaintsInDec) && !in_array('disability', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'disability'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
            // return 'I am here';
         }
         elseif(! in_array('catering', $complaintsInDec) && ! in_array('accomodation', $complaintsInDec) ){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'catering'),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
         }
         elseif(! in_array('catering', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'catering'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
         }
         elseif(! in_array('accomodation', $complaintsInDec) && ! in_array('security', $complaintsInDec)){
             $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
-                array('visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
-                array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => $complaints_no_desc[0]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => $complaints_no_desc[1]->department),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
         }
@@ -386,38 +403,38 @@ class ScheduleController extends Controller
        elseif(sizeof($complaints_no_desc)==1){
        if( in_array('security', $complaintsInDec) ){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => 'security'),
-                array('visit_on' => $request['day2'], 'department' => 'disability'),
-                array('visit_on' => $request['day3'], 'department' => 'catering'),
-                array('visit_on' => $request['day4'], 'department' => 'accomodation')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'security'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'accomodation')
             ); 
             Schedule::insert($schedules);
     }
 
     elseif(in_array('accomodation', $complaintsInDec)){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => 'accomodation'),
-                array('visit_on' => $request['day2'], 'department' => 'disability'),
-                array('visit_on' => $request['day3'], 'department' => 'catering'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
     }
     elseif(in_array('catering', $complaintsInDec) ){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => 'catering'),
-                array('visit_on' => $request['day2'], 'department' => 'disability'),
-                array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
     }
     elseif(in_array('disability', $complaintsInDec) ){
         $schedules = array(
-                array('visit_on' => $request['day1'], 'department' => 'disability'),
-                array('visit_on' => $request['day2'], 'department' => 'catering'),
-                array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-                array('visit_on' => $request['day4'], 'department' => 'security')
+                array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'disability'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'catering'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+                array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
             ); 
             Schedule::insert($schedules);
     }
@@ -426,10 +443,10 @@ class ScheduleController extends Controller
        //if size of  complaints_no_desc == 0
        else{
         $schedules = array(
-            array('visit_on' => $request['day1'], 'department' => 'disability'),
-            array('visit_on' => $request['day2'], 'department' => 'catering'),
-            array('visit_on' => $request['day3'], 'department' => 'accomodation'),
-            array('visit_on' => $request['day4'], 'department' => 'security')
+            array('for_period'=> $for_period, 'visit_on' => $request['day1'], 'department' => 'disability'),
+            array('for_period'=> $for_period, 'visit_on' => $request['day2'], 'department' => 'catering'),
+            array('for_period'=> $for_period, 'visit_on' => $request['day3'], 'department' => 'accomodation'),
+            array('for_period'=> $for_period, 'visit_on' => $request['day4'], 'department' => 'security')
         ); 
         Schedule::insert($schedules);
     }
@@ -451,8 +468,19 @@ class ScheduleController extends Controller
        
        
      
-        
-    return redirect('schedule');
+      
+    return redirect('get_scheduled');
+    }
+
+    public function showSchedule()
+    {
+        # code...
+        $for_period = Carbon::now()->format('Y M');
+
+        $schedule = Schedule::where('for_period', $for_period)->get();
+       // return $shedule;
+
+        return view('pages.schedule', compact('schedule','for_period'));
     }
 }
 

@@ -11,4 +11,6 @@ class Schedule extends Model
     protected $fillable = [
         'department', 'visit_on'
     ];
+
+    public $timestamps = true;
 }
