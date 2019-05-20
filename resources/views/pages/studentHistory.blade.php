@@ -33,7 +33,7 @@
                     <a href="/student/{id}/my_hist">History</a>  
                 </li>
                 <li>                          
-                    <a href="/student/{id}/rate_service">Rate Us</a>
+                    <a href="/student/book_appointment">Book Appointment</a>
                 </li>
             </ul>
         </div>

@@ -29,8 +29,12 @@ class HomeController extends Controller
 
     public function index()
     {
+        $id = Auth::User()->id;
+        $student = student::where('id', $id)->get();
         $complaints = complaint::where('status', 'pending review')->get();
-        return view('home')->with('complaints', $complaints);
+        // $student;
+        return view('home')->with('complaints', $complaints)
+                           ->with('student', $student);
        
     }
 
