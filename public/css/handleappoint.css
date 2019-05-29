@@ -1,0 +1,171 @@
+.myContainer{
+    width: 100%;
+    height: 100%;
+    
+    padding-left: 0;
+}
+
+.main{
+    
+    position: absolute;
+    margin-top: 60px;
+    padding-top: 0;
+    margin-left: 260px;
+    margin-right: 0;
+  
+    width: 90%;
+    
+}
+
+.heading{
+    text-align: center;
+}
+
+.main .iterate-app a{
+    text-decoration: none;
+    z-index: 1;
+
+}
+
+.main .iterate-app a:hover{
+    background-color: red !important;
+}
+
+
+.main .iterate-app .show{
+    display: block;
+    height: 80px;
+    margin: 2px 0px;
+    
+    
+}
+
+.main .iterate-app .show .card{
+    padding-bottom: 0px;
+    padding-top: 0px;
+   
+    padding: 0;
+}
+.main .iterate-app .show .card .card-body #lab{
+   text-decoration-color: black !important;
+}
+
+.main .iterate-app .show .card:hover{
+   background-color: #b3d1ff;
+  margin-right: 20px;
+   margin-left: 20px;
+}
+
+.main .iterate-app .show .card .card-body #applicant{
+    display: block;
+  
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: absolute;
+    top: 2px;
+}
+
+.main .iterate-app .show .card .card-body #time{
+   position: absolute;
+   bottom: 3px;
+   right: 20px;
+}
+
+.main .dataEntry{
+    width: absolute;
+    margin: 0 20% 0 20%; 
+    background-color:whitesmoke;
+    padding: 20px 20px 20px 20px;
+    width: 70%;
+    border-radius: 25px;
+   
+  
+}
+
+
+
+.main .dataEntry .row{
+    
+    
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.main .dataEntry .form-group input{
+
+    
+   
+  
+  
+    
+    margin-right: 0px;
+    padding-right: 1px;
+}
+
+.main .dataEntry .form-group label{
+
+    overflow-x: hidden;
+    display: inline-block;
+    
+    margin-right: 0px;
+}
+
+.main .dataEntry .form-group .cancel{
+
+    text-align: center;
+    text-decoration-color: aliceblue;
+    background-color: #ff5c33;
+    border-radius: 5px;
+    border: none;
+    width: 70px;
+    height: 30px;
+    
+}
+
+.main .dataEntry .form-group .cancel:hover{
+
+    text-align: center;
+    text-decoration-color: aliceblue !important;
+    text-decoration-style: dotted;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    width: 70px;
+    height: 30px;
+    
+}
+
+/*.main .appo-inst{
+   
+}*/
+
+.main .big-crd{
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.main .iterate-app{
+   
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.main .iterate-app .myCards{
+  
+   width: 100%;
+   padding-left: 10%;
+   padding-right: 10%;
+   padding-top: 30px;
+   padding-bottom: 30px;
+    background-color:rgba(216, 206, 206, 0.315) !important;
+    border-radius: 50px;
+}
+
+
+.main .appo-inst .table-striped{
+    background-color: rgba(216, 206, 206, 0.315);
+    width: 60%;
+    margin: 0 20%;
+}
+

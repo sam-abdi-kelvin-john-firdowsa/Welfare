@@ -8,7 +8,13 @@ use App\student;
 use App\User;
 
 class ProfileController extends Controller
-{
+{ 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function updateProfile(Request $request){
 
         $user = Auth::User();

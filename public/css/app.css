@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -44,6 +45,39 @@
   box-sizing: border-box;
 }
 
+.sammyNav{
+  position:fixed !important;
+  top: 0;
+  background-color: white !important;
+  padding: none;
+  width: 100%;
+  z-index: 1;
+}
+
+.sammyNav nav {
+  width: absolute;
+  padding: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.sammyNav .container {
+  width: absolute;
+  padding: none;
+  width: 100%;
+  margin-left: 0;
+}
+
+.sammyNav #navbarSupportedContent {
+ 
+  
+  margin-right: 0;
+  padding-left: none !important;
+}
+
+
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -84,6 +118,8 @@ hr {
   height: 0;
   overflow: visible;
 }
+
+
 
 h1,
 h2,

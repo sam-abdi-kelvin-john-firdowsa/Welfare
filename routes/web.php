@@ -61,9 +61,16 @@ Route::get('get_scheduled', 'ScheduleController@showSchedule')->name('schedule.g
 
 //booking appointment
 Route::get('/student/book_appointment', 'AppointmentController@book');
+Route::post('/setappointment', 'AppointmentController@SetAppointment')->name('appointment.set');
 
 
 //front office
 Route::get('/front_office', 'VisitorRegistryController@index');
 Route::get('/front_office/appointments', 'AppointmentController@appointments');
+Route::get('/appont18{id}79/57respond', 'AppointmentController@respond');
+Route::put('/respond/74673/appo_req{id}', 'AppointmentController@sendResponse');
+
+Route::post('/add_visitor', 'VisitorRegistryController@registerVisitor')->name('visitor.add');
+
+
 

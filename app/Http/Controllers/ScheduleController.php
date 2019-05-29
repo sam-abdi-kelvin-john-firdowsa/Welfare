@@ -11,14 +11,27 @@ use App\Schedule;
 use App\complaint;
 
 class ScheduleController extends Controller
-{
+{           
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     //
     public function index()
     {
-        $schedule = Schedule::get();
-        $schedule = Schedule::where('for_period', 'pending review')->get();
+        $schedules = Schedule::get();
+        $schedules = Schedule::where('for_period', 'pending review')->get();
 
-        return view('pages.schedule');
+
+        $for_period = Carbon::now()->format('Y M');
+
+        $schedule = Schedule::where('for_period', $for_period)->get();
+
+        //return view('pages.schedule');
+        return view('pages.schedule', compact('schedule','for_period'));
     }
 
     public function setSchedule(Request $request)
@@ -481,6 +494,7 @@ class ScheduleController extends Controller
        // return $shedule;
 
         return view('pages.schedule', compact('schedule','for_period'));
+       // return view('pages.schedule')->with('for_period', $for_period)->with('schedule', $schedule);
     }
 }
 

@@ -23,6 +23,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('officerToSee');
             $table->string('reasonForVisit');
             $table->time('timeIn');
+            $table->string('status');
+            $table->string('comments');
         
         });
     }

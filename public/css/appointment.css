@@ -1,0 +1,85 @@
+.main{
+    
+    
+    margin-top: 60px;
+    padding-top: 0;
+    
+    position: relative;
+    margin-right: 0;
+    min-width: 90%;
+    
+    width: 90%;
+}
+
+.appointment-booking{
+    width: 50% !important;
+}
+
+.appointment-booking .hed{
+   text-align: center !important;
+   margin-top: 20px;
+}
+
+.main .dataEntry{
+    width: absolute;
+    margin: 0 20% 0 20%; 
+    background-color:whitesmoke;
+    padding: 20px 20px 20px 20px;
+    width: 70%;
+    border-radius: 25px;
+   
+  
+}
+
+
+
+.main .dataEntry .row{
+    
+    
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.main .dataEntry .form-group input{
+
+    
+   
+  
+  
+    
+    margin-right: 0px;
+    padding-right: 1px;
+}
+
+.main .dataEntry .form-group label{
+
+    overflow-x: hidden;
+    display: inline-block;
+    
+    margin-right: 0px;
+}
+
+.main .dataEntry .form-group .cancel{
+
+    text-align: center;
+    text-decoration-color: aliceblue;
+    background-color: #ff5c33;
+    border-radius: 5px;
+    border: none;
+    width: 70px;
+    height: 30px;
+    
+}
+
+.main .dataEntry .form-group .cancel:hover{
+
+    text-align: center;
+    text-decoration-color: aliceblue !important;
+    text-decoration-style: dotted;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    width: 70px;
+    height: 30px;
+    
+}

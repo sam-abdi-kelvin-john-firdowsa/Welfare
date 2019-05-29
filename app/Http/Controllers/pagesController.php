@@ -10,6 +10,13 @@ use App\User;
 
 class pagesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     //
     public function studentDash($id){
         $students = student::find($id);

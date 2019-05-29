@@ -7,10 +7,19 @@ use Illuminate\Support\Facades\Auth;
 use App\student;
 use App\User;
 use App\complaint;
+use App\Appointment;
+
 
 
 class ComplaintsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     //post complaint
     public function PostComplaint(Request $request)
     {
@@ -69,5 +78,38 @@ class ComplaintsController extends Controller
     {
         $thisComplaint = complaint::find($id);
         return view('pages.adminSpecificCase')->with('thisComplaint',$thisComplaint);
+    } 
+
+    public function SetAppointment(Request $request)
+    {
+        $this->validate(request(),[
+            "name"=> 'required',
+            "phone"=> 'required',
+            "reg"=> 'required',
+            "officer"=> 'required',
+            "purpose"=> 'required',
+            "date"=> 'required',
+            "time"=> 'required'
+        ]);
+
+       
+        
+        $appo = new Appointment();
+        $appo->date = $request['date'];
+        $appo->name = $request['name'];
+        $appo->mobileNo = $request['phone'];
+        $appo->regNo = $request['reg'];
+        $appo->officerToSee = $request['officer'];
+        $appo->reasonForVisit = $request['purpose'];
+        $appo->timeIn = $request['time'];
+        $appo->status = 'pending';
+        $appo->comments = 'pending review';
+        //save the data
+        $appo->save();
+
+        return redirect('/student/book_appointment')->with('success', 'Apointment booked successfully');
+
+
+
     }
 }
