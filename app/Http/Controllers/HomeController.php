@@ -35,6 +35,7 @@ class HomeController extends Controller
     {
         $id = Auth::User()->id;
         $student = student::where('id', $id)->get();
+        $sstudent = student::find($id);
         $complaints = complaint::where('status', 'pending review')->get();
         $now = Carbon::now();
        // $CurrentYYYMMDD = Carbon::createFromFormat('Y-m-d', '$now');
@@ -42,14 +43,28 @@ class HomeController extends Controller
        $CurrentHHMMSS =$now->format("H:i:s");
       
                 if(Auth::User()->isAdmin==0){
-                    $appointments= Appointment::where([ [DB::raw('YEAR(created_at)'),'=', $now->year],
-                    ['regNo', '=', $student[0]->RegNo],
-                    [  'date','>=' ,$CurrentYYYMMDD],
-                    ['timeIn','>=', $CurrentHHMMSS]])->get(); 
+                    
 
-                    return view('home')->with('complaints', $complaints)
-                    ->with('appointments', $appointments)
-                   ->with('student', $student); 
+                    if($sstudent != null){
+                        $appointments= Appointment::where([ [DB::raw('YEAR(created_at)'),'=', $now->year],
+                        ['regNo', '=', $student[0]->RegNo],
+                        [  'date','>=' ,$CurrentYYYMMDD],
+                        ['timeIn','>=', $CurrentHHMMSS]])->get(); 
+                        return view('home')->with('complaints', $complaints)
+                        ->with('appointments', $appointments)
+                       ->with('student', $student); 
+
+                     
+                    }
+
+                    elseif ($sstudent == null) {
+                       // return 'I am not populated';
+                        return redirect('/student/complete_reg')->with('error', 'please update your profile first before continuing.');
+                    }
+
+                   # return view('home')->with('complaints', $complaints)
+                   # ->with('appointments', $appointments)
+                   #->with('student', $student); 
 
                 }
 
