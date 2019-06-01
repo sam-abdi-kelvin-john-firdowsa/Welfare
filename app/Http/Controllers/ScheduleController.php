@@ -500,10 +500,31 @@ class ScheduleController extends Controller
     public function updateSchedule(Request $request)
     {
         $for_period = Carbon::now()->format('Y M');
-       if($request->dept1 != null){
-           $sched1 = Schedule::where(['department', $request->dept1],['for_period', $for_period]);
+        //return $request['dept1'];
+       if($request['date1'] != null){
+           $dept = $request['dept1'];
+           //return $dept;
+           $sched1 = Schedule::where([ ['department','=', $dept],['for_period', $for_period] ])->first();
+           $sched1->visit_on = $request['date1'];
+           $sched1->save();
        }
-        return  $request;
+
+       if($request['date2'] != null){
+        $sched2 = Schedule::where([ ['department', $request['dept2']],['for_period', $for_period] ])->first();
+        $sched2->visit_on = $request['date2'];
+        $sched2->save();
+    }
+    if($request['date3'] != null){
+        $sched3 = Schedule::where([ ['department', $request['dept3']],['for_period', $for_period] ])->first();
+        $sched3->visit_on = $request['date3'];
+        $sched3->save();
+    }
+    if($request['date4'] != null){
+        $sched4 = Schedule::where([ ['department', $request['dept4']],['for_period', $for_period] ])->first();
+        $sched4->visit_on = $request['date4'];
+        $sched4->save();
+    } 
+        return  redirect('get_scheduled');
     }
 }
 
