@@ -58,6 +58,7 @@ Route::get('/case/handler/{id}/show', 'ComplaintsController@ShowCaseForAdmin')->
 Route::get('schedule', 'ScheduleController@index')->name('schedule.index');
 Route::post('schedule', 'ScheduleController@setSchedule')->name('schedule.set');
 Route::get('get_scheduled', 'ScheduleController@showSchedule')->name('schedule.get');
+Route::put('update_shedule', 'ScheduleController@updateSchedule')->name('schedule.update');
 
 //booking appointment
 Route::get('/student/book_appointment', 'AppointmentController@book');

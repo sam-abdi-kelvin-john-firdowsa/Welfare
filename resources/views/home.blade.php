@@ -175,7 +175,8 @@
         <div id="sidemenu" class="nav-sidenav">
    
 
-                <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a>    
+                <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a> 
+                <a href="/home">Home</a>   
                 <a href="/student/profile">Your Profile</a>
                 <a href="/student/{id}/complaint">Complain</a>                         
                 <a href="/student/{id}/my_hist">History</a>                             

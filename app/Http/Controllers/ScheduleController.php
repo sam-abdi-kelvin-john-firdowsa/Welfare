@@ -496,6 +496,15 @@ class ScheduleController extends Controller
         return view('pages.schedule', compact('schedule','for_period'));
        // return view('pages.schedule')->with('for_period', $for_period)->with('schedule', $schedule);
     }
+
+    public function updateSchedule(Request $request)
+    {
+        $for_period = Carbon::now()->format('Y M');
+       if($request->dept1 != null){
+           $sched1 = Schedule::where(['department', $request->dept1],['for_period', $for_period]);
+       }
+        return  $request;
+    }
 }
 
 
