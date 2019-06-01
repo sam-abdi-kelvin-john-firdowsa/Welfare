@@ -12,7 +12,7 @@
         <div id="sidemenu" class="nav-sidenav">
                             
                         
-                <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a> 
+                <a href="#" class="btn-close" id="showMenu" onclick="closesidemenu()">&times;</a> 
                 <a href="home">Home</a>    
                 <a href="admin/profile">Profile</a>                         
                 <a href="admin/my_hist">History</a>                              
@@ -86,7 +86,7 @@
         <div class="main" id="main" onclick="closesidemenu()"> 
 
                 <div class="heading">
-                        <h5>MONTHLY INSPECTION SCHEDULE</h5>
+                        <h5><strong>MONTHLY INSPECTION SCHEDULE</strong> </h5>
                         <br>
                         <h6>SCHEDULE:</h6>
                         <hr>
@@ -162,6 +162,18 @@
                             });
                             $("#closePopUp").click(function(){
                                 $(".popUp, .popUp-content").removeClass("actives");
+                            });
+
+                            $("#togglesidebar").click(function(){
+                                $(this).hide();
+                            });
+
+                            $("#showMenu").click(function(){
+                                $("#togglesidebar").show();
+                            });
+
+                            $("#main").click(function(){
+                                $("#togglesidebar").show();
                             });
                        
                         });

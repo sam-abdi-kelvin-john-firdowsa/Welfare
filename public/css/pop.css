@@ -80,3 +80,8 @@
     border: none;
     background-color: transparent;
 }
+
+.heading h5{
+    text-align: center;
+    text-decoration: underline;
+}
