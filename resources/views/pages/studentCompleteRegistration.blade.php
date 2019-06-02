@@ -1,56 +1,17 @@
 @extends('layouts.apptry')
 
-
+<link rel="stylesheet" type="text/css" href={{url('css/profilepicSelector.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/appointment.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/imageSelect/imgareaselect-default.css')}}>
+<script type="text/javascript" src="{{URL::asset('js/profilepicSelector.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.imgareaselect.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.imgareaselect.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.imgareaselect.pack.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.min.js')}}"></script>
 @section('content')
-<div class="container">
+<div class="myContainer">
 
-  <!-- SideNav slide-out button -->
-<a href="#" data-activates="slide-out" class="btn btn-primary p-3 button-collapse"><i
-  class="fas fa-bars"></i></a>
-
-<!-- Sidebar navigation -->
-<div id="slide-out" class="side-nav fixed">
-<ul class="custom-scrollbar">
-  <!-- Logo -->
  
-  <!--/. Logo -->
-  <!--Social-->
-  <li>
-    <ul class="social">
-      <li><a href="#" class="icons-sm fb-ic"><i class="fab fa-facebook-f"> </i></a></li>
-      <li><a href="#" class="icons-sm pin-ic"><i class="fab fa-pinterest"> </i></a></li>
-      <li><a href="#" class="icons-sm gplus-ic"><i class="fab fa-google-plus-g"> </i></a></li>
-      <li><a href="#" class="icons-sm tw-ic"><i class="fab fa-twitter"> </i></a></li>
-    </ul>
-  </li>
-  <!--/Social-->
-  <!--Search Form-->
- 
-  <!--/.Search Form-->
-  <!-- Side navigation links -->
-  <li>
-    <ul class="collapsible collapsible-accordion">
-      <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-circle"></i> Profile
-         </a>
-       
-      </li>
-      <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-book-open"></i>
-         Lodge Complaint</a>
-       
-      </li>
-      <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-clock"></i>History</a>
-       
-      </li>
-      <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-star"></i> Rate Us</a>
-        
-      </li>
-    </ul>
-  </li>
-  <!--/. Side navigation links -->
-</ul>
-<div class="sidenav-bg rgba-blue-strong"></div>
-</div>
-<!--/. Sidebar navigation -->
 
 
         @if(\Session::has('error'))
@@ -62,30 +23,47 @@
         </div>
         @endif
 
-
-        <h1>Complete Registration</h1>
+<div class="main">
+  <div class="heading text-center" id="hed">
+      <h5 id="hed">Complete Registration</h5>
           <hr>
+  </div>
+  <form class="form-horizontal" role="form" action="/profile" enctype="multipart/form-data" method="POST" autocomplete="nope">
+    {{ csrf_field() }}
         <div class="row">
           <!-- left column -->
           <div class="col-md-3">
-            <div class="text-center">
-              <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-              <h6>Upload a different photo...</h6>
+              <div class="text-center">
               
-              <input type="file" class="form-control">
+                    <img src="{{asset('images/user/defaultAvatar.jpg')}}" class="avatar img-circle" id="avatarImg" onerror="this.src='{{asset('images/user/defaultAvatar.jpg')}}'" alt="avatar" height="200" width="200">
+                
+                 
+                <!--  <img src="{{asset('images/icons/eu.png')}}" ALT="logo" id="logo" height="50" width="50"> -->
+               <br> <br> <h6>Upload a different photos...</h6>
+                
+                <input name="profilePic" type="file" class="form-control" onchange="previewFile()">
+              </div>
             </div>
-          </div>
-          
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $('#avatarImg').imgAreaSelect({
+                  handles: true,
+                  aspectRatio: "1:1",
+                  maxHeight: 200,
+                  maxWidth: 200,
+                  minHeight: 200,
+                  minWidth: 200,
+                  show: true
+
+              });
+            });
+          </script>
           <!-- edit form column -->
           <div class="col-md-9 personal-info">
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a> 
-              <i class="fa fa-coffee"></i>
-               <strong>.alert</strong>. rem to use elert.
-            </div>
+            
             <h3>Personal info</h3>
             
-            <form class="form-horizontal" role="form" action="/profile" enctype="multipart/form-data" method="POST">
+           
                   {{csrf_field()}}
               <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
@@ -131,11 +109,20 @@
 
 
               <div class="form-group">
-                <label class="col-md-3 control-label"></label>
+                
                 <div class="col-md-8">
-                  <button type="submit" class="btn btn-primary" > Update Profile <button>
-                  <span></span>
-                  <input type="reset" class="btn btn-default" value="Cancel">
+                  <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+                    </div>
+                   
+                    <div class="col">
+                        <button type="reset" class="btn btn-danger" value="Cancel" onclick="removePreview()">Cancel</button>
+                    </div>
+                  </div>
+                  
+                 
+                  
                 </div>
               </div>
             </form>
@@ -143,4 +130,5 @@
       </div>
     </div>
     <hr>
+  </div>
 @endsection

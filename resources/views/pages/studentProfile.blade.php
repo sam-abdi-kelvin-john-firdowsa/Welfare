@@ -1,48 +1,10 @@
 @extends('layouts.apptry')
 <link rel="stylesheet" type="text/css" href={{url('css/appointment.css')}}>
 <link rel="stylesheet" type="text/css" href={{url('css/sidenav.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/profilePicSelector.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/studentProfile.css')}}>
 
 
-<style>
-    
-        .main-content{
-            height: 100vh;
-        }
-        .content-display{
-            min-height: 100vh;
-        }
-        .sidenav{
-            position:fixed;
-            height: 100%;
-    
-        }
-        .sidenav ul li{
-            color: rgba(230, 230, 230, 0.9);
-            list-style: none !important;
-            padding:15px 10px;
-            border-bottom: 1px solid rgba(100, 100, 100, 0.3);
-    
-        }
-        .sidenav ul li a{
-            color: rgba(200, 200, 230, 0.9);
-            text-decoration: none;
-    
-        }
-        .sidenav ul li:hover{
-            background-color: grey;
-        }
-        .footer-container{
-            bottom:0;
-        }
-
-        .containers{
-            margin-left: 0;
-            
-
-        }
-    
-      
-    </style>
 
 @section('content')
     <div class="containers">
@@ -74,16 +36,34 @@
             </div> -->
 
             <div class="main" id="main">
-            <div class="col-sm-7" id="profile-display">
-            <p>Registration Number: {{ $studentUser['studentT']->RegNo }}</p>
-            <p>Full Name: {{ $studentUser['userT']->name }}</p>
-            <p>Email: {{ $studentUser['userT']->email }}</p>
-            <p>Phone: {{$studentUser['studentT']->phoneNo}}</p>
-                
-            </div>
-            <div class="btn btnprimary">
-               <a class="btn btn-primary" href="/student/profile_updt">edit profile</a>
-            </div>
+                <div class="profile">
+
+               
+                <div class="row">
+                        <div class="col-md-3 col-sm-3">
+
+                            <img src="/storage/profilePictures/{{$studentUser['studentT']->profilePic}}" alt=" ERROR! Loading Avatar" id="profilePic" width="200" height="200">
+
+                            </div>
+                        <div class="col-sm-7" id="profile-display">
+                        <p>Full Name: {{ $studentUser['userT']->name }}</p>
+                        <p>Registration Number: {{ $studentUser['studentT']->RegNo }}</p>                       
+                        <p>Email: {{ $studentUser['userT']->email }}</p>
+                        <p>Phone: {{$studentUser['studentT']->phoneNo}}</p>
+                            
+                        </div>
+                        <br> <br>
+                        
+                        
+                </div>
+                <div class="row">
+                        <div class="col-md-8 text-center" >
+                                <div class="btn btnprimary">
+                                        <a class="btn btn-primary" href="/student/profile_updt">edit profile</a>
+                                     </div>
+                        </div>
+                    </div>
+           </div><!--end profile -->    
         </div>
     </div>
         

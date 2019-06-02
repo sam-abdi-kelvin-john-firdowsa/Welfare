@@ -1,6 +1,12 @@
-#profile-display{
-    grid-column-start: 6;
-    grid-column-end: 10;
-    grid-row-start: row1-start
 
-  }
+#profilePic{
+  border-radius: 50%;
+}
+
+.profile{
+  background-color: white;
+  width: 80% !important;
+  margin-left: 15%;
+  padding: 30px;
+  border-radius: 25px;
+}

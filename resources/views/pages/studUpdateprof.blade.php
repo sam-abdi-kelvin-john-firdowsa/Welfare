@@ -1,10 +1,48 @@
 @extends('layouts.apptry')
 
-
+<link rel="stylesheet" type="text/css" href={{url('css/sidenav.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/appointment.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/profilepicSelector.css')}}>
+<link rel="stylesheet" type="text/css" href={{url('css/imageSelect/imgareaselect-default.css')}}>
+<script type="text/javascript" src="{{URL::asset('js/profilepicSelector.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.imgareaselect.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.imgareaselect.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.imgareaselect.pack.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/imageSelect/jquery.min.js')}}"></script>
 @section('content')
-<div class="container">
-        <h1>Edit Profile</h1>
-          <hr>
+<div class="myContainer">
+
+    <div id="sidemenu" class="nav-sidenav">
+                            
+                        
+        <a href="#" class="btn-close" id="showMenu" onclick="closesidemenu()">&times;</a> 
+        <a href="/home">Home</a>  
+        <a href="/student/profile">Your Profile</a>
+        <a href="/student/{id}/complaint">Complain</a>                         
+        <a href="/student/{id}/my_hist">History</a>                             
+        <a href="/student/book_appointment">Book Appointment</a> 
+    
+    
+    </div>
+        <div id="togglesidebar" class="togglesidebar" onclick="opensidemenu()">
+            <span id="q"></span>
+            <span id="q"></span>
+            <span id="q"></span>
+        </div>
+
+
+
+<div class="main appointment-booking" id="main" onclick="closesidemenu()">
+
+    <div class="hed" id="hed">
+        <h5><strong>Edit Profile</strong> </h5>
+        <br>
+        
+        <hr>
+    </div>
+
+       
+          
         <div class="row">
           <!-- left column -->
           <div class="col-md-3">
@@ -18,14 +56,10 @@
           
           <!-- edit form column -->
           <div class="col-md-9 personal-info">
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a> 
-              <i class="fa fa-coffee"></i>
-               <strong>.alert</strong>. rem to use alert.
-            </div>
+           
             <h3>Personal info</h3>
             
-            <form class="form-horizontal" role="form" action="/profile" enctype="multipart/form-data" method="POST">
+            <form class="form-horizontal" role="form" action="/profile" enctype="multipart/form-data" method="PUT">
                   {{csrf_field()}}
               <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
@@ -43,14 +77,14 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Reg Number:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text" name="RegNo" placeholder="S13/12345/03">
+                <input class="form-control" type="text" name="RegNo" placeholder="{{$student->RegNo}}">
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="col-md-3 control-label">Phone Number:</label>
                 <div class="col-md-8">
-                  <input class="form-control" type="text" name="phoneNo" placeholder="+2547945521">
+                <input class="form-control" type="text" name="phoneNo" placeholder="{{$student->phoneNo}}">
                 </div>
               </div>
             <!--  
@@ -73,14 +107,52 @@
               <div class="form-group">
                 <label class="col-md-3 control-label"></label>
                 <div class="col-md-8">
-                  <button type="submit" class="btn btn-primary" > Update Profile <button>
-                  <span></span>
-                  <input type="reset" class="btn btn-default" value="Cancel">
+                  <div class="row">
+                    <div class="col"> <button type="submit" class="btn btn-primary" > Update Profile <button> </div>
+                      
+                          <span></span>
+                          <div class="col"> <input type="reset" class="btn btn-danger" value="Cancel"> </div>
+                          
+                  </div>
+                  
                 </div>
               </div>
             </form>
           </div>
       </div>
     </div>
+    </div>
     <hr>
+
+    <script>
+                       
+        $(document).ready(function(){
+            $("#pop").click(function(){
+                $(".popUp, .popUp-content").addClass("actives");
+            });
+            $("#closePopUp").click(function(){
+                $(".popUp, .popUp-content").removeClass("actives");
+            });
+
+            $("#togglesidebar").click(function(){
+                $(this).hide();
+            });
+
+            $("#showMenu").click(function(){
+                $("#togglesidebar").show();
+            });
+
+            $("#main").click(function(){
+                $("#togglesidebar").show();
+            });
+       
+        });
+
+
+
+   </script>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="{{URL::asset('js/nav.js')}}"></script>
 @endsection

@@ -49,9 +49,18 @@ class pagesController extends Controller
         return view('pages.studentCompleteRegistration')->with('user',$user);
     }
 
-    public function studentProfileupdt(){
+    public function studentProfileupdt(){ //returns view for editing existing stud profile
         $user = Auth::user();
-        return view('pages.studUpdateprof')->with('user',$user);
+        $id = $user->id;
+        $student = student::find($id);
+        return view('pages.studUpdateprof')->with('user',$user)->with('student', $student);
+    }
+
+    public function actuallyUpdateStdProf(Request $request) //this is for changing existing profile
+    {
+        $id = Auth::User()->id;
+
+
     }
 
 
