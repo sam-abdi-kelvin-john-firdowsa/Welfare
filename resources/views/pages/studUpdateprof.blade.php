@@ -85,7 +85,7 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Reg Number:</label>
                 <div class="col-lg-8">
-                    {{form::text('RegNo', '', ['class'=>'form-control', 'placeholder'=>"$student->RegNo"])}}
+                    {{form::text('RegNo', $student->RegNo, ['class'=>'form-control', 'value'=>"$student->RegNo"])}}
                 <!--input class="form-control" type="text" name="RegNo" placeholder="{{$student->RegNo}}"-->
                 </div>
               </div>
@@ -93,7 +93,7 @@
               <div class="form-group">
                 <label class="col-md-3 control-label">Phone Number:</label>
                 <div class="col-md-8">
-                    {{form::text('phoneNo','', ['class'=>'form-control', 'placeholder'=>"$student->phoneNo"])}}
+                    {{form::text('phoneNo',$student->phoneNo, ['class'=>'form-control', 'value'=>"$student->phoneNo"])}}
                 <!--input class="form-control" type="text" name="phoneNo" placeholder="{{$student->phoneNo}}"-->
                 </div>
               </div>

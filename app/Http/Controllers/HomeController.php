@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\student;
 use App\User;
 use App\complaint;
+use App\Visitor;
 use App\Appointment;
 use Calendar;
 use DB;
@@ -42,7 +43,7 @@ class HomeController extends Controller
        $CurrentYYYMMDD = $now->format("Y-m-d");
        $CurrentHHMMSS =$now->format("H:i:s");
       
-                if(Auth::User()->isAdmin==0){
+                if(Auth::User()->isAdmin==0 && Auth::User()->isSecretary==0){
                     
 
                     if($sstudent != null){
@@ -66,9 +67,16 @@ class HomeController extends Controller
                    # ->with('appointments', $appointments)
                    #->with('student', $student); 
 
+                } elseif(Auth::User()->isAdmin==0 && Auth::User()->isSecretary==true ){
+
+                     # code...
+                        $records = Visitor::orderBy('date', 'desc')->get();
+                        //return $records;
+                        return view ('pages.registryAdd')->with('records', $records);
+
                 }
 
-                else{
+                elseif(Auth::User()->isAdmin==true && Auth::User()->isSecretary==0){
                     return view('home')->with('complaints', $complaints)
                                      ->with('student', $student); 
                 }

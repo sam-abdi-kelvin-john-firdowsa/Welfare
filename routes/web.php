@@ -68,7 +68,7 @@ Route::post('/setappointment', 'AppointmentController@SetAppointment')->name('ap
 
 
 //front office
-Route::get('/front_office', 'VisitorRegistryController@index');
+Route::get('/front_office', 'VisitorRegistryController@index')->middleware('secretary');
 Route::get('/front_office/appointments', 'AppointmentController@appointments');
 Route::get('/appont18{id}79/57respond', 'AppointmentController@respond');
 Route::put('/respond/74673/appo_req{id}', 'AppointmentController@sendResponse');
