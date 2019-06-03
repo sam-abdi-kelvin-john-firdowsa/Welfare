@@ -40,51 +40,61 @@
         
         <hr>
     </div>
-
-       
-          
+    <div class="well">
+    {!! Form::open(array('class'=>'form-horizontal','route' => 'profile.edit', 'method'=>'POST', 'enctype'=>'multipart/form-data','files'=>'true', 'autocomplete' => 'off')) !!}
+   
+      {{csrf_field()}}
         <div class="row">
+          
           <!-- left column -->
           <div class="col-md-3">
-            <div class="text-center">
-              <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-              <h6>Upload a different photo...</h6>
+              <div class="text-center">
               
-              <input type="file" class="form-control">
+                  <img src="/storage/profilePictures/{{$student->profilePic}}" onerror="this.src='/storage/profilePictures/{{$student->profilePic}}'" alt=" ERROR! Loading Avatar" id="avatarImg" width="200" height="200">
+                
+                 
+                <!--  <img src="{{asset('images/icons/eu.png')}}" ALT="logo" id="logo" height="50" width="50"> -->
+               <br> <br> <h6>Upload a different photo...</h6>
+               {!! Form::input('file','profilePic',null,['class'=>'form-control', 'onchange'=>'previewFile()'] )!!}
+                <!--input name="profilePic" type="file" class="form-control" onchange="previewFile()"-->
+              </div>
             </div>
-          </div>
           
           <!-- edit form column -->
           <div class="col-md-9 personal-info">
            
             <h3>Personal info</h3>
             
-            <form class="form-horizontal" role="form" action="/profile" enctype="multipart/form-data" method="PUT">
-                  {{csrf_field()}}
+           
+                 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
                 <div class="col-lg-8">
-                <input class="form-control" type="text" name="name" value="{{$user->name}}">
+                   {{form::text('name', $user->name , ['class'=>'form-control'])}}
+                <!--input class="form-control" type="text" name="name" value="{{$user->name}}"-->
                 </div>
               </div>
              
               <div class="form-group">
                 <label class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
-                <input class="form-control" type="text" name="email" value="{{$user->email}}">
+                    {{form::email('email', $user->email , ['class'=>'form-control'])}}
+                <!--input class="form-control" type="text" name="email" value="{{$user->email}}"-->
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">Reg Number:</label>
                 <div class="col-lg-8">
-                <input class="form-control" type="text" name="RegNo" placeholder="{{$student->RegNo}}">
+                    {{form::text('RegNo', '', ['class'=>'form-control', 'placeholder'=>"$student->RegNo"])}}
+                <!--input class="form-control" type="text" name="RegNo" placeholder="{{$student->RegNo}}"-->
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="col-md-3 control-label">Phone Number:</label>
                 <div class="col-md-8">
-                <input class="form-control" type="text" name="phoneNo" placeholder="{{$student->phoneNo}}">
+                    {{form::text('phoneNo','', ['class'=>'form-control', 'placeholder'=>"$student->phoneNo"])}}
+                <!--input class="form-control" type="text" name="phoneNo" placeholder="{{$student->phoneNo}}"-->
                 </div>
               </div>
             <!--  
@@ -102,16 +112,20 @@
               </div>
             -->
 
-
+            {{ Form::hidden('_method', 'PUT') }}
 
               <div class="form-group">
                 <label class="col-md-3 control-label"></label>
                 <div class="col-md-8">
                   <div class="row">
-                    <div class="col"> <button type="submit" class="btn btn-primary" > Update Profile <button> </div>
+                    <div class="col">
+                        {{form::submit('Edit Profile', ['class'=>'btn btn-primary', 'value'=>'Update Profile'])}}
+                      <!--button type="submit" class="btn btn-primary" > Update Profile <button--> </div>
                       
                           <span></span>
-                          <div class="col"> <input type="reset" class="btn btn-danger" value="Cancel"> </div>
+                          <div class="col"> 
+                              {{form::reset('Cancel', ['class'=>'btn btn-danger', 'value'=>'Cancel', 'onclick'=>'removePreview()'])}}
+                            <!--input type="reset" class="btn btn-danger" value="Cancel" onclick="removePreview()"--> </div>
                           
                   </div>
                   
@@ -120,6 +134,8 @@
             </form>
           </div>
       </div>
+      {!! Form::close() !!}
+    </div>
     </div>
     </div>
     <hr>

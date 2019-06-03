@@ -45,6 +45,8 @@ Route::post('/profile', 'ProfileController@updateProfile');
 
 Route::get('/student/complete_reg', 'PagesController@studentCompleteReg');
 
+Route::put('editProf', 'pagesController@editProfile')->name('profile.edit');//???????
+
 //route for posting a complaint
 Route::post('/complain', 'ComplaintsController@PostComplaint');
 Route::get('/student/{id}/my_hist', 'ComplaintsController@studentHistory');
