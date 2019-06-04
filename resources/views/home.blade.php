@@ -34,10 +34,12 @@
                         <div id="sidemenu" class="nav-sidenav">
                             
                         
-                                <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a>    
+                                <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a>  
+                                <a href="/home">Home</a>   
                                 <a href="admin/profile">Profile</a>                         
                                 <a href="admin/my_hist">History</a>                              
-                                <a href="schedule">Inspection Schedule</a>  
+                                <a href="schedule">Inspection Schedule</a>
+                                <a href="/reports">reports</a>  
                             
                             
                             </div>

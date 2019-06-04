@@ -526,6 +526,13 @@ class ScheduleController extends Controller
     } 
         return  redirect('get_scheduled');
     }
+
+    public function showReports()
+    {
+        $shedReports = Schedule::where('report', '!=', NULL)->get();
+
+        return view('pages.reports')->with('SchedReports', $shedReports);
+    }
 }
 
 
