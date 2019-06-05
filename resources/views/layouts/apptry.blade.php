@@ -87,10 +87,21 @@
 
     </div>
 
+                                 <!-- for side nav -->
+                        <link rel="stylesheet" type="text/css" href={{url('css/sidenav.css')}}>
+                        <link rel="stylesheet" type="text/css" href={{url('css/appointment.css')}}>
+                        <script type="text/javascript" src="{{URL::asset('js/nav.js')}}"></script>
+                        
         
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
+
 </body>
 </html>

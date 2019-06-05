@@ -9,6 +9,25 @@
 <div class="myContainer">
 
 
+        @if(\Session::has('error'))
+
+        <div class="alert alert-danger">
+        
+        {{\Session::get('error')}}
+        
+        </div>
+
+        @elseif(\Session::has('success'))
+
+        <div class="alert alert-success">
+            {{\Session::get('success')}}
+        </div>
+        
+        @endif
+
+
+
+
     <div id="sidemenu" class="nav-sidenav">
                             
                         
@@ -65,9 +84,56 @@
             <hr>
         </div>
 
+        <div class="card-wrapper card-float-grey">
+        <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center"><strong>DUE REPORTS</strong></h4>
+                </div>
+           </div><hr><br>
+   <div class="iterate-app" id="iterate-app">
+                @if(count($dueReports)>0)
+
+                @foreach ($dueReports as $due)
 
 
+                    <div class="show">
+                            <a href="report/{{$due->id}}/add">
+                                <div class="card">
+                                        <div class="card-body">
+                                                <small>REPORT ID: {{$due->id}}</small>
+                                                <h5>Department: {{$due->department}}</h5>
+                                        <small> FOR PERIOD {{$due->for_period}}</small>
+                                        </div>
+                                    </div>
+                            </a>
+                        
 
+                    </div>
+    
+@endforeach
+
+                @else
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-center">DUE REPORTS</h6> <hr>
+                            <p> All Due Reports Have Been Filed!</p>   
+                    </div>
+                </div>
+
+                @endif
+   </div>
+   <br>
+</div>
+
+   <hr>
+
+   <div class="card-wrapper card-float-grey">
+
+   <div class="card">
+        <div class="card-body">
+            <h4 class="text-center"><strong>SUBMITTED REPORTS</strong></h4>
+        </div>
+   </div><hr><br>
 
 <div class="iterate-app" id="iterate-app">
 
@@ -78,7 +144,7 @@
 
 
 <div class="show">
-        <a href="case/handler/{{$repo->id}}">
+        <a href="report/{{$repo->id}}/view">
             <div class="card">
                     <div class="card-body">
                             <small>REPORT ID: {{$repo->id}}</small>
@@ -102,10 +168,11 @@
 @endif
 
 </div>
-</div></div>
-
+</div>
+</div>
+</div>
+<br>
 
 </div>   
-</div>
 <script type="text/javascript" src="{{URL::asset('js/nav.js')}}"></script>
 @endsection

@@ -530,8 +530,39 @@ class ScheduleController extends Controller
     public function showReports()
     {
         $shedReports = Schedule::where('report', '!=', NULL)->get();
+        $dueReports = Schedule::where('report', '=', NULL)->get();
 
-        return view('pages.reports')->with('SchedReports', $shedReports);
+        return view('pages.reports')->with('SchedReports', $shedReports)
+                                    ->with('dueReports', $dueReports);
+    }
+
+    public function viewSpecificReport($id)
+    {
+        $scheduleReport = Schedule::find($id);
+        return view('pages.viewReport' ,compact('scheduleReport'));
+    }
+
+    public function reportEditor($id)
+    {
+        $report = Schedule::find($id);
+        return view('pages.addReport')->with('report', $report);
+    }
+
+    public function addReport(Request $request, $id)
+    {
+        $schedule = Schedule::where('id',$id)->first();
+
+        $this->validate(request(),[
+            'report'=>['required','string', 'min:25' ]
+        ]);
+
+        $schedule->report = $request['report'];
+        $schedule->submitted_by = Auth::User()->name;
+        $schedule->submitted_at = Carbon::now()->format('Y'.'-'.'m'.'-'.'d');
+        $schedule->save();
+
+        return redirect('/reports')->with('success', 'Report submitted successfully.');
+
     }
 }
 

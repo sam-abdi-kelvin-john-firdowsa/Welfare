@@ -83,3 +83,13 @@
     height: 30px;
     
 }
+
+.card-wrapper{
+    background-color: azure;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.card-float-grey{
+    box-shadow: 0px 0px 5px 5px gray;
+}

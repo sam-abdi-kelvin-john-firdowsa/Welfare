@@ -62,6 +62,9 @@ Route::post('schedule', 'ScheduleController@setSchedule')->name('schedule.set');
 Route::get('get_scheduled', 'ScheduleController@showSchedule')->name('schedule.get');
 Route::put('update_shedule', 'ScheduleController@updateSchedule')->name('schedule.update');
 Route::get('/reports', 'ScheduleController@showReports');
+Route::get('report/{id}/view', 'ScheduleController@viewSpecificReport');
+Route::get('report/{id}/add', 'ScheduleController@reportEditor');
+Route::put('add_report/{id}', 'ScheduleController@addReport')->name('report.add');
 
 //booking appointment
 Route::get('/student/book_appointment', 'AppointmentController@book');
