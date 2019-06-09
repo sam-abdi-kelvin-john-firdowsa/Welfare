@@ -50,7 +50,8 @@ class HomeController extends Controller
                         $appointments= Appointment::where([ [DB::raw('YEAR(created_at)'),'=', $now->year],
                         ['regNo', '=', $student[0]->RegNo],
                         [  'date','>=' ,$CurrentYYYMMDD],
-                        ['timeIn','>=', $CurrentHHMMSS]])->get(); 
+                        ['timeIn','>=', $CurrentHHMMSS]])->get();
+                       // return $appointments; 
                         return view('home')->with('complaints', $complaints)
                         ->with('appointments', $appointments)
                        ->with('student', $student); 

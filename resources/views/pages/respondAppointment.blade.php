@@ -52,7 +52,7 @@
                                 </tr>
                                 <tr>
                                      <th scope="row">DIRECTOR</th>
-                                <td>{{$appoint->officerToSee}}</td>
+                                <td> Director {{$director->name}}</td>
                                 </tr>
                                 <tr> <th scope="row">TIME</th>
                                 <td>{{$appoint->timeIn}}</td>

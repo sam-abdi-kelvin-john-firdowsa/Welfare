@@ -61,7 +61,7 @@
                     <select name="officer" class="form-control" id="officer" > 
                             <option value="">--please select the officer to see--</option>
                             @foreach ($admin as $adm)
-                    <option value="{{$adm->id}}">Director {{$adm->name}}</option>
+                    <option value="{{$adm->name}}">Director {{$adm->name}}</option>
                                 
                             @endforeach
                     </select>

@@ -42,7 +42,7 @@ class AppointmentController extends Controller
             "date"=> 'required',
             "time"=> 'required'
         ]);
-
+ 
        
         
         $appo = new Appointment();
@@ -71,6 +71,7 @@ class AppointmentController extends Controller
     {
 
         $appointments = Appointment::where('status', '=', 'pending')->orderBy('created_at','asc' )->get();
+       // $director = User::where('id', $appointments->officerToSee)->first();
         return view('pages.handleAppointments')->with('appointments', $appointments);
     }
 
@@ -78,7 +79,9 @@ class AppointmentController extends Controller
     {
         $thisAppo = Appointment::find($id);
 
-        return view('pages.respondAppointment')->with('appoint', $thisAppo);
+        $director = User::where('id', $thisAppo->officerToSee)->first();
+
+        return view('pages.respondAppointment')->with('appoint', $thisAppo)->with('director', $director);
     }
 
     public function sendResponse(Request $request, $id)

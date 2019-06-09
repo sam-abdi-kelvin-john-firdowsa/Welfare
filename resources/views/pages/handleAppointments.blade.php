@@ -12,10 +12,8 @@
    
 
         <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a>    
-        <a href="/student/profile">Your Profile</a>
-        <a href="/student/{id}/complaint">Complain</a>                         
-        <a href="/student/{id}/my_hist">History</a>                             
-        <a href="/student/book_appointment">Book Appointment</a>
+        <a href="/home">Home</a>
+        <a href="/front_office/appointments">appointments</a>
     
     
     </div>

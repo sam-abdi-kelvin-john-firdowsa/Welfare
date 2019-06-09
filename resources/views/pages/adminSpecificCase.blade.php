@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href={{url('css/pop.css')}}>
 @section('content')
 
-<div class="myContainerss">
+<div class="myContainer">
 
         <div id="sidemenu" class="nav-sidenav">
                             
@@ -29,7 +29,7 @@
 
 
 
-    <div class="mains" id="main">
+    <div class="main" id="main">
 
         
             <div class="card" >
@@ -280,7 +280,7 @@
                     height: auto;
                     opacity: 1 !important;
                 }
-                .mains{
+                .main{
                     position: static;
                     /*height: 700px !important;*/
                     min-height: 500px !important;
@@ -289,11 +289,11 @@
                     background-color: rgb(220, 220, 220);
                     
                 }
-                .myContainerss{
-                    position:inherit;
+                .myContainers{
+                   /* position:inherit;
                    
-                   margin-top: 0 !important;
-                   top: 0px !important;
+                   margin-top: 0 !important; */
+                 /* top: 0px !important; */
                 }
                  
             </style>
