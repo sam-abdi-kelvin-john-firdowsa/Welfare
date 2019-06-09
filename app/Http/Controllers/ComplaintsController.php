@@ -8,6 +8,7 @@ use App\student;
 use App\User;
 use App\complaint;
 use App\Appointment;
+use Carbon\Carbon;
 
 
 
@@ -59,9 +60,16 @@ class ComplaintsController extends Controller
     public function showCaseForStudent($id)
     {
        $case = complaint::find($id);
+       if($case->status == 'Open'){
+             $director = User::find($case->SolvedBy);
+             return view('pages.studentSpecificComplaint')->with('thisCase', $case)->with('director', $director);
+       } else{
+        return view('pages.studentSpecificComplaint')->with('thisCase', $case);
+       }
+      
       // $thisComplaint = 'Hey You';//complaint::where('id', $id)->get();
         
-       return view('pages.studentSpecificComplaint')->with('thisCase', $case);
+       //return view('pages.studentSpecificComplaint')->with('thisCase', $case)->with('director', $director);
     }
 
     public function ChangeStatusToOpen($id)
@@ -70,14 +78,20 @@ class ComplaintsController extends Controller
         complaint::where('id', $id)->update(array('status'=>'Open','SolvedBy'=>$admin));
        // return redirect('/case/handler/{id}/show');
        $thisCase = complaint::find($id);
-       return view('pages.adminSpecificCase')->with('thisCase',$thisCase);
+       $stud = student::where('RegNo', $thisCase->studReg)->first();
+       return view('pages.adminSpecificCase')->with('thisCase',$thisCase)->with('stud', $stud);
 
     }
 
     public function ShowCaseForAdmin($id)
     {
-        $thisComplaint = complaint::find($id);
-        return view('pages.adminSpecificCase')->with('thisComplaint',$thisComplaint);
+
+        $thisCase = complaint::find($id);
+        $stud = student::where('RegNo', $thisCase->studReg)->first();
+        return view('pages.adminSpecificCase')->with('thisCase',$thisCase)->with('stud', $stud);
+       // $thisComplaint = complaint::find($id);
+       // $stud = student::where('RegNo', $thisComplaint->studReg)->get();
+       // return view('pages.adminSpecificCase')->with('thisComplaint',$thisComplaint)->with('stud', $stud);
     } 
 
     public function SetAppointment(Request $request)
@@ -111,5 +125,18 @@ class ComplaintsController extends Controller
 
 
 
+    }
+
+    public function close(Request $request, $id)
+    {
+       //return $id;
+        $this->validate(request(),[
+            "action"=> 'required'
+        ]);
+
+            $thisComp = complaint::find($id);
+           
+            $thisComp->update(array('status'=>'Closed','corrective_action'=>$request['action'],'closed_at'=> Carbon::now()->format('Y'.'-'.'m'.'-'.'d')));
+            return redirect('/case/handler/'.$id.'/show');
     }
 }

@@ -1,58 +1,113 @@
 @extends('layouts.apptry')
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
-
-<link rel="stylesheet" type="text/css" href= "{{asset('css/dash.css')}}">
  
 
 @section('content')
  
+<script src="js/app.js" charset="utf-8"></script>
+
+<div class="myContainer">
+
+        <div id="sidemenu" class="nav-sidenav">
+   
+
+                <a href="#" class="btn-close" onclick="closesidemenu()">&times;</a>  
+                <a href="/home">Home</a>  
+                <a href="/student/profile">Your Profile</a>
+                <a href="/student/{id}/complaint">Complain</a>                         
+                <a href="/student/{id}/my_hist">History</a>                             
+                <a href="/student/book_appointment">Book Appointment</a>
+            
+            
+            </div>
+                <div id="togglesidebar" class="togglesidebar" onclick="opensidemenu()">
+                    <span id="q"></span>
+                    <span id="q"></span>
+                    <span id="q"></span>
+                </div>
+
+
+
+    <div class="main" id="main" onclick="closesidemenu()">
+
+            <div class="card comp" >
+                    <!--  <h2>Open Tasks Shows up here</h2>  -->
+                    <div class="card-body comp-body">
+                            <small>Case status: {{$thisCase->status}}</small>
+                            <br>
+                            <small>Case submitted at:{{$thisCase->created_at}}</small> <br>
+                            @if($thisCase->status == "Open")
+                            <small>Served by: Director {{$director->name}}</small>
+                            @endif
+                            <br>
+                            <hr>
+                                    @if($thisCase->status == 'Closed')
+                                    <small>Case closed on: {{$thisCase->closed_at}}</small>
+                                    <p>Corrective Action: {{$thisCase->corrective_action}}</p>
+                                    <hr>
+                                    @endif
+                            <div class="complaint-content" id="complaint-content">
+                                <h6>Department: {{$thisCase->department}}</h6>
+                                <p>{{$thisCase->details}}</p>
+                            </div>
+                            
+
+                    
+
+                    <script>
+                            var thisComplaintInstance ={!! json_encode($thisCase->toArray())!!}
+                            //var CompId = thisComplaintInstance[id];
+                           //console.log(thisComplaintInstance);
+                         //  var CompObj = JSON.parse(thisComplaintInstance);
+                         var complaintChannel = thisComplaintInstance.id;
+                          // console.log(complaintChannel);
+                        </script>
+
+                    <!--div class="chat">
+                        <div id="app">
+                               
+                                <chat-log :messages='messages'></chat-log>
+                        <chat-composer v-on:messagesent='addmessage' ></chat-composer>
+                        </div>
+                       
+                       
+                    </div-->
+
+            </div>
+                    <script src="{{ asset('js/app.js')}}" ></script>
+                    <style>
+                            .card{
+                                min-height: 80%;
+                                opacity: 1 !important;
+                                background-color: aqua !important;
+                            }
+                            .comp{
+                                background-color: aqua !important;
+                            }
+                           .card .card-body #complaint-content{
+                                min-height: 5000px;
+                                background-color: aqua;
+                            }
+                            .main{
+                                position: static;
+                                /*height: 700px !important;*/
+                                min-height: 500px !important;
+                                height: auto;
+                                padding: 20px;
+                                background-color: rgb(220, 220, 220);
+                                
+                            }
+                        </style>
+            
+                   
+                    </div>
+    </div>
+
           
 
-    <div class="content-container container-fluid">
-    <div class="row content-display">
-    <div class="col-md-3 sidenav">
-        <h2 class="well text-center"> Some Links</h2>
-        <div Container>
-            <ul id="sidenav-links">
-                <li>
-                    <a href="/student/profile">Your Profile</a>
-                </li>
-                <li>
-                    <a href="/student/complaint">Complain</a>  
-                </li>  
-                <li>                        
-                    <a href="/student/{id}/my_hist">History</a>  
-                </li>
-                <li>                          
-                    <a href="/student/book_appointment">Book Appointment</a>
-                </li>
-            </ul>
-        </div>
-
-    </div><!--Sidebar col-md-5-->
-
-    <div class="col-md-8">
-
-        <div class="col-md-12 main-content" >
-        <!--  <h2>Open Tasks Shows up here</h2>  -->
-        <small>Case status: {{$thisCase->status}}</small>
-        <br>
-        <small>Case submitted at:{{$thisCase->created_at}}</small>
-        <br>
-        <hr>
-        <h6>Department: {{$thisCase->department}}</h6>
-        <p>{{$thisCase->details}}</p>
-        </div>
-
-    </div>
-    
-
-    </nav> 
-</div>       
+       
 
 
 
@@ -87,8 +142,8 @@
     <!-- Bootstrap core JavaScript -->                  
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script  src="js/custom.js"></script>
 
 
 

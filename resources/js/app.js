@@ -21,6 +21,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('chat-message', require('./components/chatMessage.vue').default);
+Vue.component('chat-log', require('./components/chatLog.vue').default);
+Vue.component('chat-composer', require('./components/chatComposer.vue').default);
+//Vue.component('example', require('./components/Example.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,46 +32,26 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-         //   const app = new Vue({
-         //       el: '#app'
-          //  });
-
-require('./bootstrap');
-
-Vue.component('chat-messages', require('./components/ChatMessages.vue'));
-Vue.component('chat-form', require('./components/ChatForm.vue'));
-
 const app = new Vue({
     el: '#app',
-
-    data: {
-        messages: []
+    data:{
+        messages: [ ]
     },
-
-    created() {
-        this.fetchMessages();
-        Echo.private('chat')
-            .listen('MessageSent', (e) => {
-                this.messages.push({
-                message: e.message.message,
-                user: e.user
-                });
-  });
-    },
-
     methods: {
-        fetchMessages() {
-            axios.get('/messages').then(response => {
+        addmessage(msg){
+            //add to existing messages
+            this.messages.push(msg);
+
+            //persist to database
+             
+            //console.log('message added');
+                }
+
+        },
+        created(){
+            axios.get('/messages').then(response =>{
+                //console.log(response);
                 this.messages = response.data;
             });
-        },
-
-        addMessage(message) {
-            this.messages.push(message);
-
-            axios.post('/messages', message).then(response => {
-              console.log(response.data);
-            });
-        }
-    }
+        } 
 });

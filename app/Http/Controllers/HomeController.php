@@ -106,7 +106,9 @@ class HomeController extends Controller
 
     public function adminHist()
     { 
-        return view('pages.adminHistory');
+        $myComplaints = complaint::where('SolvedBy', '=', Auth::User()->id)->get();
+        //return $myComplaints;
+        return view('pages.adminHistory')->with('myComplaints', $myComplaints);
     }
 }
 

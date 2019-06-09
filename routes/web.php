@@ -33,7 +33,7 @@ Route::get('admin/my_hist', 'HomeController@adminHist')->middleware('admin');
 
 /* These are the routes for the chat controller, view etc */
 Route::get('/student/{id}/complaint/{cid}/show', 'ChatsController@index');
-Route::get('messages', 'ChatsController@fetchMessages');
+Route::get('/messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');
 Auth::routes();
 
@@ -52,6 +52,8 @@ Route::post('/complain', 'ComplaintsController@PostComplaint');
 Route::get('/student/{id}/my_hist', 'ComplaintsController@studentHistory');
 
 Route::get('/student/case/show/{complaint}', 'ComplaintsController@showCaseForStudent');
+
+Route::put('close_case/{id}', 'ComplaintsController@close');
 
 Route::get('case/handler/{id}', 'ComplaintsController@ChangeStatusToOpen')->middleware('admin');
 Route::get('/case/handler/{id}/show', 'ComplaintsController@ShowCaseForAdmin')->middleware('admin');
