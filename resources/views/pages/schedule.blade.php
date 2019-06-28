@@ -4,6 +4,22 @@
 <link rel="stylesheet" type="text/css" href={{url('css/sidenav.css')}}>
 <link rel="stylesheet" type="text/css" href={{url('css/appointment.css')}}>
 
+<!-- for datePicker-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+        $( function() {
+          $( "#datepicker" ).datepicker();
+          $( "#anim" ).on( "change", function() {
+            $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+          });
+        } );
+        </script>
+<!-- end datePicker-->
+
 @section('content')
 
 <div class="myContainer">
@@ -27,11 +43,16 @@
                     <span id="q"></span>
                 </div>
 
+               
+
                 <div class="popUp" id="popUp">
                     
                         <div class="popUp-content" id="popUP-content">
                             <div class="padd">
                                     <a href="#" class="btn-close" id="closePopUp">&times;</a>
+
+                                  
+
                                     {!! Form::open(array('route' => 'schedule.update', 'method'=>'POST', 'files'=>'true', 'autocomplete' => 'off')) !!}
                                     {{ csrf_field() }}
                                     {!! Form::label('day', 'Edit Inspection Dates')!!}
@@ -55,7 +76,7 @@
                                              <th scope="row">{{$i}}</th>
                                              <td> {{form::text('dept'.$i, $sch->department , ['class'=>'form-control','id'=>'no-border','readonly'=>'readonly'])}} </td>                                                
                                              <td>{{$sch->visit_on}}</td>
-                                             <td>{!! Form::input('date','date'.$i,null,['class'=>'form-control', 'placeholder'=>''] )!!} </td>
+                                             <td>{!! Form::input('date','date'.$i,null,['class'=>'form-control', 'placeholder'=>'', 'id'=>'datepicker'] )!!} </td>
                                              </tr>
                                          @endforeach
                                      </table>
@@ -68,7 +89,8 @@
                                     </div>
                                  
                                  {!!Form::close() !!}
-                                   
+
+                                
                                    
                         
                                 </div>
@@ -93,6 +115,18 @@
                         <hr>
                     </div>
 
+                    <script>
+                            $( function() {
+                              $( "#datepicker" ).datepicker();
+                              $( "#anim" ).on( "change", function() {
+                                $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+                              });
+                            } );
+                            </script>
+
+                   
+                       
+
                     <div id="show-free-day-input">
 
                             @if (count($schedule) == 0)
@@ -103,14 +137,15 @@
                              <div class="form-group">
                                  {!! Form::label('day', 'Input Inspection Dates')!!}
                                <div> {!! Form::label('events', 'Day 1')!!}
-                                   {!! Form::date('day1',null,['class'=>'form-control'] )!!}</div>  
+                                   {!! Form::date('day1',null,['class'=>'form-control', 'id'=>'datepicker'] )!!}</div>  
                                <div> {!! Form::label('day', 'Day 2')!!}
-                                   {!! Form::date('day2',null,['class'=>'form-control'] )!!}</div> 
+                                   {!! Form::date('day2',null,['class'=>'form-control', 'id'=>'datepicker'] )!!}</div> 
                                <div> {!! Form::label('day', 'Day 3')!!}
-                                   {!! Form::date('day3',null,['class'=>'form-control'] )!!}</div>  
+                                   {!! Form::date('day3',null,['class'=>'form-control', 'id'=>'datepicker'] )!!}</div>  
                                <div> {!! Form::label('day', 'Day 4')!!}
-                                   {!! Form::date('day4',null,['class'=>'form-control'] )!!}</div> 
+                                   {!! Form::date('day4',null,['class'=>'form-control', 'id'=>'datepicker'] )!!}</div> 
                              </div>
+                             
                              <div class="col-xs-1 col-sm-1 col-md-1 text-centre"> &nbsp; <br>
                                 {!! Form::submit('Set Dates',['class'=>'btn btn-primary'] )!!}
                             

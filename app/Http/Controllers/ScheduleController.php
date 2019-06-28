@@ -36,11 +36,12 @@ class ScheduleController extends Controller
 
     public function setSchedule(Request $request)
     { 
+        $today = strtotime("now");
         $this->validate(request(),[
-            "day1"=> 'required',
-            "day2"=> 'required',
-            "day3"=> 'required',
-            "day4"=> 'required',
+            "day1"=> 'required|date|after:today',
+            "day2"=> 'required|date|after:today',
+            "day3"=> 'required|date|after:today',
+            "day4"=> 'required|date|after:today',
            // "desc"=> 'required'
         ]);
 

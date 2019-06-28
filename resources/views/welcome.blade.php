@@ -15,6 +15,7 @@
         <style>
             html, body {
                 background-color: #fff;
+               
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -44,6 +45,12 @@
 
             .content {
                 text-align: center;
+                background-image: url("/images/backgroundImages/landing.jpg");
+               background-size: contain; 
+                background-size: cover; 
+                padding-top: 40px;
+               
+                /*top: 100px*/
             }
 
             .title {
@@ -67,6 +74,8 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            <div class="nav-content">
+            <div class="navFront" id="frontDisp">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -80,8 +89,11 @@
                     @endauth
                 </div>
             @endif
+        </div>
+    </div>
 
             <div class="content">
+                <div class="frontDisp" id="frontDisp">
                 <div class="title m-b-md">
                     DIRECTORATE OF UNIVERSITY WELFARE SERVICES 
                 </div>
@@ -95,7 +107,23 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+               
             </div>
+            </div>
+            <style>
+                #frontDisp{
+                    background-color: rgb(225, 225, 225, 0.9);
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    height: 500px;
+                    padding-top: 40px;
+                    border-radius: 50px;
+                }
+                #navFront{
+                    background-color: rgb(225, 225, 225, 0.9) !important;
+                    z-index: 1;
+                }
+            </style>
         </div>
     </body>
 </html>

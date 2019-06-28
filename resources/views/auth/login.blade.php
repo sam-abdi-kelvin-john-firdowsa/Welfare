@@ -76,6 +76,8 @@
 <style>
         .containers{
            background-image: url("/images/backgroundImages/gate eger 2.jpg"); 
+           background-size: contain; 
+                
          /* background-color: red !important; */
           width: 100% !important;
           height: 90vh !important;
