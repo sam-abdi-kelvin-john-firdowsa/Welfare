@@ -26,7 +26,7 @@ class ComplaintsController extends Controller
     {
         $this->validate(request(),[
             "department"=> 'required',
-            "desc"=> 'required'
+            "desc"=> 'required|min:20'
         ]);
         $complaint = new complaint();
         $user = Auth::User();

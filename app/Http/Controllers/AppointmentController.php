@@ -87,7 +87,7 @@ class AppointmentController extends Controller
     public function sendResponse(Request $request, $id)
     {
         $this->validate($request, [
-            'response'=>'required'
+            'response'=>'required|min:5'
         ]);
         $thisApp = Appointment::find($id);
 

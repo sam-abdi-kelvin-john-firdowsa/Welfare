@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href={{url('css/handleappoint.css')}}>
 
 <div class="myContainer">
+      
 
         <div id="sidemenu" class="nav-sidenav">
            
@@ -68,6 +69,7 @@
                     </div>
 
                         <hr>
+                        @include('inc.messages')
 
                         <div>
                             <h6>RESPOND TO APPOINTMENT REQUEST:</h6>
@@ -79,7 +81,7 @@
                                 {!! Form::open(['method'=>'POST', 'autocomplete'=>'off', 'action'=>['AppointmentController@sendResponse',$appoint->id ]]) !!}
                                     <div class="row">
                                         <div class="col">
-                                            {{form::text('response', '' , ['class'=>'form-control', 'placeholder'=>'Type response here...'])}}
+                                            {{form::text('response', NULL , ['class'=>'form-control', 'placeholder'=>'Type response here...'])}}
                                            
                                         </div>
                                     </div>
