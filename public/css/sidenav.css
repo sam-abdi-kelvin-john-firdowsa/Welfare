@@ -16,7 +16,7 @@ body{
     top: 90px;
     
 
-}
+} 
 
 .togglesidebar:hover{
     animation: shake 1s ease infinite ;
@@ -47,6 +47,7 @@ body{
 .nav-sidenav{
     height: 100%;
     background-color: #111;
+    background-image: url("/images/backgroundImages/sidenavimg2.i.jpg");
     width: 0px;
     position: fixed;
     z-index: 1;
@@ -65,7 +66,7 @@ body{
     font-size: 18px;
     display: block;
     overflow: hidden;
-    color: khaki; 
+    color: #39ff14; 
     border-bottom: solid #fff 0.3px;
 }
 

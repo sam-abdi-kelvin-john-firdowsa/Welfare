@@ -199,13 +199,25 @@
              <h2>STUDENT DASHBOARD</h2>
                <hr>
                
-               <div class="col-sm-12" id="profile-display">
-                    <p>Full Name: {{ $student[0]->Name }}</p>
-                    <p>Registration Number: {{ $student[0]->RegNo }}</p>
-                    <p>Email: {{ $student[0]->email }}</p>
-                    <p>Phone: {{$student[0]->phoneNo}}</p>
+               <div class="row" id="profile-display">
+                   <div class="col">
+                        <p style="text-align:right"><strong>Student Details</strong></p>
+                   </div>
+                   <div class="col">
+                        <p>Full Name: {{ $student[0]->Name }}</p>
+                        <p>Registration Number: {{ $student[0]->RegNo }}</p>
+                        <p>Email: {{ $student[0]->email }}</p>
+                        <p>Phone: {{$student[0]->phoneNo}}</p>
+                   </div>
+
+                   <div class="col">
+                        <img src="/storage/profilePictures/{{$student[0]->profilePic}}" alt=" ERROR! Loading Avatar" id="profilePic" width="200" height="200" style="border-radius:50%">
+                   </div>
+                   
                         
                     </div>
+                    <br>
+                    <br>
 
                     <div class="card">
                         <div class="card-body">
@@ -242,7 +254,15 @@
 
 
 
+            <style>
+                #profile-display{
+                    background-color: white;
+                    border-radius: 25px;
+                    padding: 30px;
+                    box-shadow: 0 4px 2px -2px gray;
+                }
             
+            </style>
         
         
         

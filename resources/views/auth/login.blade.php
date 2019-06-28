@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.apptry')
 
 @section('content')
-<div class="container">
+<div class="containers">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" id="register-card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        <div class="notClear" id="notclear">
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -64,10 +64,39 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<style>
+        .containers{
+           background-image: url("/images/backgroundImages/gate eger 2.jpg"); 
+         /* background-color: red !important; */
+          width: 100% !important;
+          height: 90vh !important;
+          position: relative;
+          margin-top: 0px;
+          top: 0px !important;
+          
+       }
+   
+       #register-card{
+           top: 20vh;
+           /*opacity: 0.7; */
+           background-color: rgb(255, 255, 255, 0.7) !important;
+           margin-left: 20px;
+           margin-right: 20px;
+       }
+   
+       #notclear{
+           padding: 40px 50px;
+           background-color: whitesmoke;
+           border-radius: 25px;
+       }
+   </style>
 @endsection
